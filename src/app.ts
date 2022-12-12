@@ -2,11 +2,13 @@
 
 import Main   from "./components/main/main";
 import Header from "./components/header/header";
+import { State } from "control/state";
+
 
 export class App {
     header: Header;
-    constructor(parentNode:HTMLElement){
+    constructor(parentNode:HTMLElement, state:State){
       new Header(parentNode);
-      new Main(parentNode)
+      new Main(parentNode, state)
     }
 }
