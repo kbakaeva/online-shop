@@ -17,9 +17,10 @@
       ]
     }
   },
-  "files": ["src/index.ts"],
+  "files": ["src/index.ts", "module.d.ts"],
   "include": [
   "src/**/*",
+  "tests/**/*.ts",
 	".eslintrc.js"
   ],
   "exclude": [

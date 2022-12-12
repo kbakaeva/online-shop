@@ -15,7 +15,7 @@
         "no-console": 0,
         "class-methods-use-this": "off",
 		"@typescript-eslint/no-explicit-any": "error",
-		"@typescript-eslint/no-empty-interface": "off"
-    // "@typescript-eslint/no-var-requires": 0
+		"@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-var-requires": 0
     }
 }

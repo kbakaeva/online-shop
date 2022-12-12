@@ -1,0 +1,9 @@
+@import '../../global.scss';
+
+.wrapper{
+  display: flex;
+  flex-wrap: wrap;
+}
+.img-card{
+  max-width: 200px;
+}

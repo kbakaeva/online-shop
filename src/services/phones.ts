@@ -1,13 +1,14 @@
-import { IPhones } from "interface/phones";
-import { PhoneIMG1 } from "../assets/png/iphone14purple.png";
-import { PhoneIMG2 } from "../assets/png/iphone14black.png";
-import { PhoneIMG3 } from "../assets/png/iphone11red.png";
-import { PhoneIMG4 } from "../assets/png/iphone14white.png";
-import { PhoneIMG5 } from "../assets/png/iphone13blue.png";
-import { PhoneIMG6 } from "../assets/png/samsunga12.png";
-import { PhoneIMG7 } from "../assets/png/samsungFlip3.png";
-import { PhoneIMG8 } from "../assets/png/samsungs21.png";
-import { PhoneIMG9 } from "../assets/png/samsungUltra.png";
+import { IPhones } from "../interface/phones";
+import  PhoneIMG1  from "../assets/png/iphone14purple.png";
+import  PhoneIMG2  from "../assets/png/iphone14black.png";
+import  PhoneIMG3  from "../assets/png/iphone11red.png";
+import  PhoneIMG4  from "../assets/png/iphone14white.png";
+import  PhoneIMG5  from "../assets/png/iphone13blue.png";
+import  PhoneIMG6  from "../assets/png/samsunga12.png";
+import  PhoneIMG7 from "../assets/png/samsungFlip3.png";
+import  PhoneIMG8  from "../assets/png/samsungs21.png";
+import  PhoneIMG9  from "../assets/png/samsungUltra.png";
+
 export const phonesData: Array<IPhones> = [
     {
         id: 1,
