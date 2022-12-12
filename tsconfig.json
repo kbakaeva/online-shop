@@ -11,10 +11,15 @@
     "outDir": "dist",
     "baseUrl": "./src",
     "sourceMap": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
   },
   "files": ["src/index.ts"],
   "include": [
-    "src",
+  "src/**/*",
 	".eslintrc.js"
   ],
   "exclude": [

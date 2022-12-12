@@ -1,0 +1,17 @@
+@import '../../global.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background: $black;
+  color: $white;
+  height: 70px;
+  align-items: center;
+  &__block-basket{
+    display: flex;
+  }
+  &__clear-hash{
+    height: 25px;
+    border-radius: 10px;
+  }
+}
