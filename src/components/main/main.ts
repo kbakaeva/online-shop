@@ -26,6 +26,7 @@ export default class Main extends Control {
   search: Seach;
 
   found: Control<HTMLElement>;
+
   filter: BrandFilter;
 
   constructor(parentNode: HTMLElement, state: State) {

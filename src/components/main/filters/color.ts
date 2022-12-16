@@ -3,14 +3,18 @@ import {State} from '../../../control/filterState';
 
 export class FilterColor extends Control {
   color: Control<HTMLElement>;
+  blockColor: Control<HTMLElement>;
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'div', 'color');
     const color = ['purple', 'black', 'red', 'white'];
     const arrayColor: string[] = [];
-    this.color = new Control(this.node, 'h3', 'color-title', 'По Цвету:');
+    this.blockColor = new Control(this.node, 'div', 'color-content');
+    this.color = new Control(this.blockColor.node, 'h3', 'color-title', 'Color');
     color.forEach((item) => {
       const filterColorBlock = new Control(this.node, 'div', 'color-block');
       const colorItem = new Control(filterColorBlock.node, 'input', 'color-check', item, 'type', 'checkbox');
+      const colorSquare = new Control(filterColorBlock.node, 'div', 'color-square');
+      colorSquare.node.style.background = item;
       new Control(filterColorBlock.node, 'label', 'color-label', item);
       colorItem.node.onclick = () => {
         const index = arrayColor.indexOf(item);
