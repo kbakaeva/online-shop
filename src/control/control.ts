@@ -3,11 +3,11 @@ class Control<NodeType extends HTMLElement = HTMLElement> {
 
   constructor(
     parentNode: HTMLElement | null,
-    tagName = "div",
-    className = "",
-    content = "",
-    attribute = "",
-    type = ""
+    tagName = 'div',
+    className = '',
+    content = '',
+    attribute = '',
+    type = ''
   ) {
     const el = document.createElement(tagName);
     el.className = className;
@@ -24,6 +24,7 @@ class Control<NodeType extends HTMLElement = HTMLElement> {
   destroy(): void {
     this.node.remove();
   }
+
   setOnClick(onclick: () => void) {
     this.node.onclick = onclick;
   }

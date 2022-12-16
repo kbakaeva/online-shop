@@ -1,0 +1,10 @@
+.block-cards {
+  border: 2px solid;
+  margin: 10px;
+  color: #9c8d8d;
+  border-radius: 10px;
+}
+.card:nth-child(1) {
+  display: flex;
+  justify-content: center;
+}

@@ -1,9 +1,19 @@
 @import '../../global.scss';
 
-.wrapper{
+.wrapper {
   display: flex;
   flex-wrap: wrap;
 }
-.img-card{
+.img-card {
   max-width: 200px;
+}
+.main {
+  display: flex;
+  justify-content: center;
+}
+.block-filters {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  font-size: 1.3rem;
 }
