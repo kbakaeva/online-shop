@@ -26,11 +26,17 @@
   margin: 10px 0;
   border: 2px solid $grey;
   border-radius: 5px;
+  text-align: center;
+  .sort {
+    width: 100%;
+  }
 }
 .color {
   border: 2px solid $grey;
   border-radius: 10px;
+  margin: 15px 0;
 }
+
 .search-container {
   display: flex;
   justify-content: space-between;
@@ -60,4 +66,8 @@
       transform: rotate(-45deg);
     }
   }
+}
+.brand {
+  border: 2px solid $grey;
+  border-radius: 10px;
 }

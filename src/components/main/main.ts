@@ -8,6 +8,7 @@ import Cards from './cards/cards';
 import {Sort} from './filters/sort';
 import {FilterColor} from './filters/color';
 import {Seach} from './filters/search';
+import {BrandFilter} from './filters/brand';
 
 export default class Main extends Control {
   title: Control<HTMLElement>;
@@ -25,6 +26,7 @@ export default class Main extends Control {
   search: Seach;
 
   found: Control<HTMLElement>;
+  filter: BrandFilter;
 
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'main', 'main');
@@ -36,12 +38,13 @@ export default class Main extends Control {
     });
     this.sort = new Sort(blockFilters.node, state);
     this.filterColorInput = new FilterColor(blockFilters.node, state);
+    this.filter = new BrandFilter(blockFilters.node, state);
 
     const refresh = (el: IFilters) => {
       let result = this.sortPhones([...phonesData], el.sort);
       result = this.filterColor(result, el.color);
       result = this.searchPhones(result, el.search);
-
+      result = this.filterPhones(result, el.manufacturer);
       if (this.wrapper) {
         this.wrapper.destroy();
         this.renderCards(result);
@@ -83,5 +86,11 @@ export default class Main extends Control {
       this.found = new Control(this.node, 'p', 'not-found', 'no found');
     }
     return data.filter((element) => element.name.toLowerCase().includes(search.toLowerCase()));
+  }
+
+  filterPhones(data: IPhones[], manufacturer: string[]) {
+    return data.filter((element) =>
+      manufacturer.length === 0 ? element : manufacturer.includes(element.manufacturer)
+    );
   }
 }
