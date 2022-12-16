@@ -15,10 +15,11 @@ export class Sort extends Control {
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'div', 'container');
     this.sort = new Control(this.node, 'select', 'sort');
-    this.options = new Control(this.sort.node, 'option', 'option', 'Сортировка по A-Z');
-    this.optionsRevers = new Control(this.sort.node, 'option', 'option', 'Сортировка по Z-A');
-    this.camera = new Control(this.sort.node, 'option', 'option', 'По цене ↑');
-    this.amount = new Control(this.sort.node, 'option', 'option', 'По цене ↓');
+    this.options = new Control(this.sort.node, 'option', 'option', 'Sort options:');
+    this.options = new Control(this.sort.node, 'option', 'option', 'Sort by A-Z');
+    this.optionsRevers = new Control(this.sort.node, 'option', 'option', 'Sort by Z-A');
+    this.camera = new Control(this.sort.node, 'option', 'option', 'Sort by price ↑');
+    this.amount = new Control(this.sort.node, 'option', 'option', 'Sort by price ↓');
     this.sort.node.onchange = () => {
       state.content = {...state.content, sort: this.sort.node.selectedIndex};
     };
