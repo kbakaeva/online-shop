@@ -1,0 +1,41 @@
+import Control from '../../../control/control';
+import {State} from '../../../control/filterState';
+import 'nouislider/dist/nouislider.css';
+import * as noUiSlider from 'nouislider';
+
+export default class RangeSliderPrice extends Control {
+  sliderNode: Control<HTMLElement>;
+  sliderElem: Control<HTMLElement>;
+  slider: noUiSlider.target;
+  startNum: Control<HTMLElement>;
+  endNum: Control<HTMLElement>;
+  number: Control<HTMLElement>;
+
+  constructor(parentNode: HTMLElement, state: State) {
+    super(parentNode, 'div', 'slider');
+
+    this.sliderNode = new Control(this.node, 'div', 'slider', '', 'id', 'slider');
+    const slider: noUiSlider.target = this.sliderNode.node;
+    this.number = new Control(this.node, 'div', 'slider-nums');
+    this.startNum = new Control(this.number.node, 'div', 'slider__start-num', '150');
+    this.endNum = new Control(this.number.node, 'div', 'slider__end-num', '1500');
+
+    noUiSlider.create(slider, {
+      start: [state.content.price[0], state.content.price[1]],
+      connect: true,
+      range: {
+        min: 150,
+        max: 1300,
+      },
+      step: 10,
+    });
+    slider.noUiSlider.on('update', (values: string[], handle: number) => {
+      state.content = {...state.content, price: values};
+      if (handle) {
+        this.endNum.node.textContent = Math.round(Number(values[handle])).toString();
+      } else {
+        this.startNum.node.textContent = Math.round(Number(values[handle])).toString();
+      }
+    });
+  }
+}

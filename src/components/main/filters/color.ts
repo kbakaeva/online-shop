@@ -13,8 +13,6 @@ export class FilterColor extends Control {
     color.forEach((item) => {
       const filterColorBlock = new Control(this.node, 'div', 'color-block');
       const colorItem = new Control(filterColorBlock.node, 'input', 'color-check', item, 'type', 'checkbox');
-      const colorSquare = new Control(filterColorBlock.node, 'div', 'color-square');
-      colorSquare.node.style.background = item;
       new Control(filterColorBlock.node, 'label', 'color-label', item);
       colorItem.node.onclick = () => {
         const index = arrayColor.indexOf(item);

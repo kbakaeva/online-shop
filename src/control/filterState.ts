@@ -6,8 +6,8 @@ export const filterState: IFilters = {
   search: '',
   manufacturer: [],
   color: [],
-  price: ['', ''],
-  amount: ['1', '8'],
+  price: ['150', '1300'],
+  amount: ['1', '14'],
   button: [],
 };
 

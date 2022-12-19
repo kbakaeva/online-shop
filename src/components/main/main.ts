@@ -1,6 +1,6 @@
 import './main.scss';
-import {State} from 'control/filterState';
-import {IFilters} from 'interface/filter';
+import {State} from '../../control/filterState';
+import {IFilters} from '../../interface/filter';
 import {IPhones} from '../../interface/phones';
 import {phonesData} from '../../services/phones';
 import Control from '../../control/control';
@@ -9,6 +9,8 @@ import {Sort} from './filters/sort';
 import {FilterColor} from './filters/color';
 import {Seach} from './filters/search';
 import {BrandFilter} from './filters/brand';
+import RangeSliderAmount from './filters/sliderAmount';
+import RangeSliderPrice from './filters/slider.Price';
 
 export default class Main extends Control {
   title: Control<HTMLElement>;
@@ -29,6 +31,9 @@ export default class Main extends Control {
 
   filter: BrandFilter;
 
+  sliderAmount: RangeSliderAmount;
+  sliderPrice: RangeSliderPrice;
+
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'main', 'main');
     this.renderCards(phonesData);
@@ -40,12 +45,16 @@ export default class Main extends Control {
     this.sort = new Sort(blockFilters.node, state);
     this.filterColorInput = new FilterColor(blockFilters.node, state);
     this.filter = new BrandFilter(blockFilters.node, state);
+    this.sliderAmount = new RangeSliderAmount(blockFilters.node, state);
+    this.sliderPrice = new RangeSliderPrice(blockFilters.node, state);
 
     const refresh = (el: IFilters) => {
       let result = this.sortPhones([...phonesData], el.sort);
       result = this.filterColor(result, el.color);
       result = this.searchPhones(result, el.search);
       result = this.filterPhones(result, el.manufacturer);
+      result = this.sliderPhonesAmount(result, el.amount);
+      result = this.sliderPhonesPrice(result, el.price);
       if (this.wrapper) {
         this.wrapper.destroy();
         this.renderCards(result);
@@ -93,5 +102,11 @@ export default class Main extends Control {
     return data.filter((element) =>
       manufacturer.length === 0 ? element : manufacturer.includes(element.manufacturer)
     );
+  }
+  sliderPhonesAmount(data: IPhones[], value: (string | number)[]) {
+    return data.filter((element) => +value[0] <= +element.amount && +value[1] >= +element.amount);
+  }
+  sliderPhonesPrice(data: IPhones[], value: (string | number)[]) {
+    return data.filter((element) => +value[0] <= +element.price && +value[1] >= +element.price);
   }
 }
