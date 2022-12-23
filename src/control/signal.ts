@@ -14,7 +14,9 @@ class Signal<ListenerType> {
   }
 
   emit(params: ListenerType) {
-    this.listeners.forEach((listener) => listener(params));
+    this.listeners.forEach((listener) => {
+      listener(params);
+    });
   }
 }
 export default Signal;

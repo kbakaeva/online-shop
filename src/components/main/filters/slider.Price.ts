@@ -10,10 +10,11 @@ export default class RangeSliderPrice extends Control {
   startNum: Control<HTMLElement>;
   endNum: Control<HTMLElement>;
   number: Control<HTMLElement>;
+  price: Control<HTMLElement>;
 
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'div', 'slider');
-
+    this.price = new Control(this.node, 'div', 'slider-name', 'Price');
     this.sliderNode = new Control(this.node, 'div', 'slider', '', 'id', 'slider');
     const slider: noUiSlider.target = this.sliderNode.node;
     this.number = new Control(this.node, 'div', 'slider-nums');
@@ -32,9 +33,9 @@ export default class RangeSliderPrice extends Control {
     slider.noUiSlider.on('update', (values: string[], handle: number) => {
       state.content = {...state.content, price: values};
       if (handle) {
-        this.endNum.node.textContent = Math.round(Number(values[handle])).toString();
+        this.endNum.node.textContent = Math.ceil(Number(values[handle])).toString();
       } else {
-        this.startNum.node.textContent = Math.round(Number(values[handle])).toString();
+        this.startNum.node.textContent = Math.ceil(Number(values[handle])).toString();
       }
     });
   }
