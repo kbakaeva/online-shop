@@ -6,13 +6,12 @@ export class Seach extends Control {
   cross: Control<HTMLInputElement>;
   lineCrossOne: Control<HTMLElement>;
   lineCrossTwo: Control<HTMLElement>;
-  constructor(parentNode: HTMLElement, state: State, crossClick: () => void) {
+  constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'div', 'search-container');
     this.input = new Control(this.node, 'input', 'search');
     const cross = new Control(this.node, 'div', 'cross');
     cross.setOnClick(() => {
-      crossClick();
-      this.input.node.value = '';
+      state.content = {...state.content, search: (this.input.node.value = '')};
     });
 
     this.input.node.placeholder = 'Search';

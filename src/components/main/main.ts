@@ -32,16 +32,14 @@ export default class Main extends Control {
   filter: BrandFilter;
 
   sliderAmount: RangeSliderAmount;
+
   sliderPrice: RangeSliderPrice;
 
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'main', 'main');
     this.renderCards(phonesData);
     const blockFilters = new Control(this.node, 'div', 'block-filters');
-    this.search = new Seach(blockFilters.node, state, () => {
-      this.wrapper.destroy();
-      this.renderCards(phonesData);
-    });
+    this.search = new Seach(blockFilters.node, state);
     this.sort = new Sort(blockFilters.node, state);
     this.filterColorInput = new FilterColor(blockFilters.node, state);
     this.filter = new BrandFilter(blockFilters.node, state);
@@ -61,15 +59,21 @@ export default class Main extends Control {
       }
     };
     state.onChange.add(refresh);
+
     refresh(state.content);
   }
 
   renderCards(item: IPhones[]) {
     this.wrapper = new Control(this.node, 'div', 'wrapper');
+    this.found = new Control(this.wrapper.node, 'p', 'not-found', 'no found');
     const wrapper = this.wrapper.node;
     item.forEach((item) => {
       this.cards = new Cards(wrapper, item);
+      this.found.node.style.display = 'none';
     });
+    if (wrapper.childNodes.length === 0) {
+      this.found.node.style.display = 'block';
+    }
   }
 
   sortPhones(data: IPhones[], index: number) {
@@ -92,9 +96,6 @@ export default class Main extends Control {
   }
 
   searchPhones(data: IPhones[], search: string): IPhones[] {
-    if (data.filter((element) => element.name.toLowerCase().includes(search.toLowerCase())).length === 0) {
-      this.found = new Control(this.node, 'p', 'not-found', 'no found');
-    }
     return data.filter((element) => element.name.toLowerCase().includes(search.toLowerCase()));
   }
 
