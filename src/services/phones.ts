@@ -1,4 +1,4 @@
-import {IPhones} from '../interface/phones';
+import { IPhones } from '../interface/phones';
 import PhoneIMG1 from '../assets/png/iphone14purple.png';
 import PhoneIMG2 from '../assets/png/iphone14black.png';
 import PhoneIMG3 from '../assets/png/iphone11red.png';
@@ -18,6 +18,7 @@ export const phonesData: Array<IPhones> = [
     price: 1300,
     amount: 5,
     image: PhoneIMG1,
+    button: 'Купить',
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ export const phonesData: Array<IPhones> = [
     price: 1300,
     amount: 2,
     image: PhoneIMG2,
+    button: 'Купить',
   },
   {
     id: 3,
@@ -36,6 +38,7 @@ export const phonesData: Array<IPhones> = [
     price: 800,
     amount: 2,
     image: PhoneIMG3,
+    button: 'Купить',
   },
   {
     id: 4,
@@ -45,6 +48,7 @@ export const phonesData: Array<IPhones> = [
     price: 1300,
     amount: 8,
     image: PhoneIMG4,
+    button: 'Купить',
   },
   {
     id: 5,
@@ -54,6 +58,7 @@ export const phonesData: Array<IPhones> = [
     price: 1000,
     amount: 4,
     image: PhoneIMG5,
+    button: 'Купить',
   },
   {
     id: 6,
@@ -63,6 +68,7 @@ export const phonesData: Array<IPhones> = [
     price: 150,
     amount: 14,
     image: PhoneIMG6,
+    button: 'Купить',
   },
   {
     id: 7,
@@ -72,6 +78,7 @@ export const phonesData: Array<IPhones> = [
     price: 800,
     amount: 14,
     image: PhoneIMG7,
+    button: 'Купить',
   },
   {
     id: 8,
@@ -81,6 +88,7 @@ export const phonesData: Array<IPhones> = [
     price: 450,
     amount: 9,
     image: PhoneIMG8,
+    button: 'Купить',
   },
   {
     id: 9,
@@ -90,5 +98,6 @@ export const phonesData: Array<IPhones> = [
     price: 500,
     amount: 14,
     image: PhoneIMG9,
+    button: 'Купить',
   },
 ];

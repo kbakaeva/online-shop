@@ -25,6 +25,5 @@ export default class Cards extends Control {
     this.color = new Control(this.node, 'div', 'card', `Цвет: ${item.color}`);
     this.price = new Control(this.node, 'div', 'card', `Цена: ${item.price}`);
     this.amount = new Control(this.node, 'div', 'card', `Количество: ${item.amount}`);
-    this.button = new Control(this.node, 'button', 'btn', `${item.button}`);
   }
 }

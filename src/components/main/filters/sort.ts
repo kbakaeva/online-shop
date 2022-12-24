@@ -1,5 +1,5 @@
 import Control from '../../../control/control';
-import {State} from '../../../control/filterState';
+import { State } from '../../../control/filterState';
 
 export class Sort extends Control {
   sort: Control<HTMLSelectElement>;
@@ -21,7 +21,7 @@ export class Sort extends Control {
     this.camera = new Control(this.sort.node, 'option', 'option', 'Sort by price ↑');
     this.amount = new Control(this.sort.node, 'option', 'option', 'Sort by price ↓');
     this.sort.node.onchange = () => {
-      state.content = {...state.content, sort: this.sort.node.selectedIndex};
+      state.content = { ...state.content, sort: this.sort.node.selectedIndex };
     };
   }
 }

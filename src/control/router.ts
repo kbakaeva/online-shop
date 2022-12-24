@@ -1,4 +1,4 @@
-import {Basket} from '@/components/header/basket';
+import Basket from '../components/basket/basket';
 import Main from '../components/main/main';
 
 const AppRoute = {

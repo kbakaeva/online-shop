@@ -6,4 +6,5 @@ export interface IPhones {
   price: number;
   amount: number;
   image: string;
+  button: string;
 }

@@ -1,38 +1,28 @@
-import './main.scss';
-import {State} from '../../control/filterState';
-import {IFilters} from '../../interface/filter';
-import {IPhones} from '../../interface/phones';
-import {phonesData} from '../../services/phones';
+import { State } from '../../control/filterState';
+import { IFilters } from '../../interface/filter';
+import { IPhones } from '../../interface/phones';
+import { phonesData } from '../../services/phones';
 import Control from '../../control/control';
 import Cards from './cards/cards';
-import {Sort} from './filters/sort';
-import {FilterColor} from './filters/color';
-import {Seach} from './filters/search';
-import {BrandFilter} from './filters/brand';
+import { Sort } from './filters/sort';
+import { FilterColor } from './filters/color';
+import { Seach } from './filters/search';
+import { BrandFilter } from './filters/brand';
 import RangeSliderAmount from './filters/sliderAmount';
 import RangeSliderPrice from './filters/slider.Price';
+import './main.scss';
 
 export default class Main extends Control {
   title: Control<HTMLElement>;
-
   cards: Cards;
-
   wrapper: Control<HTMLElement>;
-
   sort: Sort;
-
   filterColorInput: FilterColor;
-
   blockSorts: Control<HTMLElement>;
-
   search: Seach;
-
   found: Control<HTMLElement>;
-
   filter: BrandFilter;
-
   sliderAmount: RangeSliderAmount;
-
   sliderPrice: RangeSliderPrice;
 
   constructor(parentNode: HTMLElement, state: State) {
