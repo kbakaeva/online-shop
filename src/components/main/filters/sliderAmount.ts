@@ -18,8 +18,8 @@ export default class RangeSliderAmount extends Control {
     this.sliderNode = new Control(this.node, 'div', 'slider', '', 'id', 'slider');
     const slider: noUiSlider.target = this.sliderNode.node;
     this.number = new Control(this.node, 'div', 'slider-nums');
-    this.startNum = new Control(this.number.node, 'div', 'slider__start-num', '0');
-    this.endNum = new Control(this.number.node, 'div', 'slider__end-num', '8');
+    this.startNum = new Control(this.number.node, 'div', 'slider__start-num');
+    this.endNum = new Control(this.number.node, 'div', 'slider__end-num');
 
     noUiSlider.create(slider, {
       start: [state.content.amount[0], state.content.amount[1]],

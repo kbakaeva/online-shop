@@ -35,16 +35,21 @@ export default class Main extends Control {
 
   sliderPrice: RangeSliderPrice;
 
+  foundСounter: Control<HTMLElement>;
+
+  blockFilters: Control<HTMLElement>;
+
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'main', 'main');
     this.renderCards(phonesData);
-    const blockFilters = new Control(this.node, 'div', 'block-filters');
-    this.search = new Seach(blockFilters.node, state);
-    this.sort = new Sort(blockFilters.node, state);
-    this.filterColorInput = new FilterColor(blockFilters.node, state);
-    this.filter = new BrandFilter(blockFilters.node, state);
-    this.sliderAmount = new RangeSliderAmount(blockFilters.node, state);
-    this.sliderPrice = new RangeSliderPrice(blockFilters.node, state);
+    this.blockFilters = new Control(this.node, 'div', 'block-filters');
+    this.search = new Seach(this.blockFilters.node, state);
+    this.sort = new Sort(this.blockFilters.node, state);
+    this.filterColorInput = new FilterColor(this.blockFilters.node, state);
+    this.filter = new BrandFilter(this.blockFilters.node, state);
+    this.sliderAmount = new RangeSliderAmount(this.blockFilters.node, state);
+    this.sliderPrice = new RangeSliderPrice(this.blockFilters.node, state);
+    this.foundСounter = new Control(this.blockFilters.node, 'div', 'counter', 'Found:');
 
     const refresh = (el: IFilters) => {
       let result = this.sortPhones([...phonesData], el.sort);
@@ -53,9 +58,14 @@ export default class Main extends Control {
       result = this.filterPhones(result, el.manufacturer);
       result = this.sliderPhonesAmount(result, el.amount);
       result = this.sliderPhonesPrice(result, el.price);
+
       if (this.wrapper) {
         this.wrapper.destroy();
+        this.foundСounter.destroy();
         this.renderCards(result);
+        const wrapperLength: string = (this.wrapper.node.childNodes.length - 1).toString();
+        this.foundСounter = new Control(this.blockFilters.node, 'div', 'counter', 'Found:');
+        this.foundСounter.node.textContent = `Found: ${Number(wrapperLength)}`;
       }
     };
     state.onChange.add(refresh);
@@ -69,11 +79,11 @@ export default class Main extends Control {
     const wrapper = this.wrapper.node;
     item.forEach((item) => {
       this.cards = new Cards(wrapper, item);
-
       this.found.node.style.display = 'none';
     });
     if (wrapper.childNodes.length === 0) {
       this.found.node.style.display = 'block';
+      this.foundСounter.node.textContent = 'Found: 0';
     }
   }
 
@@ -97,25 +107,14 @@ export default class Main extends Control {
   }
 
   searchPhones(data: IPhones[], search: string): IPhones[] {
-    // const arrayStr = data.map((b) => {
-    //   const name = b.name.toLowerCase();
-    //   const price = b.price.toString();
-    //   const manufacturer = b.manufacturer.toLowerCase();
-    //   const amount = b.amount.toString();
-    //   console.log(name);
-    //   // const array = [name, price, manufacturer, amount];
-    //   return [name, price, manufacturer, amount];
-    //   // const [name, price, manufacturer, amount] = b;
-    // });
-
-    // const arr = arrayStr.flat();
-    // console.log(b);
-
-    // b.filter((element) => {
-    //   console.log(element);
-    // });
-
-    return data.filter((element) => element.amount.toString().toLowerCase().includes(search.toLowerCase()));
+    return data.filter(
+      (element) =>
+        element.amount.toString().toLowerCase().includes(search.toLowerCase()) ||
+        element.name.toLowerCase().includes(search.toLowerCase()) ||
+        element.price.toString().toLowerCase().includes(search.toLowerCase()) ||
+        element.manufacturer.toLowerCase().includes(search.toLowerCase()) ||
+        element.color.toLowerCase().includes(search.toLowerCase())
+    );
   }
 
   filterPhones(data: IPhones[], manufacturer: string[]) {

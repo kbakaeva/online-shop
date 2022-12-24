@@ -9,7 +9,7 @@ import PhoneIMG7 from '../assets/png/samsungFlip3.png';
 import PhoneIMG8 from '../assets/png/samsungs21.png';
 import PhoneIMG9 from '../assets/png/samsungUltra.png';
 
-export const phonesData: Array<IPhones> = [
+export const phonesData: IPhones[] = [
   {
     id: 1,
     name: 'iPhone 14 Pro Max',
