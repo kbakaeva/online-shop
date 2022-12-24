@@ -1,6 +1,6 @@
-import {State} from './control/filterState';
-import {App} from './app';
-import {IFilters} from './interface/filter';
+import { State } from './control/filterState';
+import { App } from './app';
+import { IFilters } from './interface/filter';
 
 const root = document.createElement('div');
 root.classList.add('root');
@@ -27,14 +27,14 @@ function updateQueryStringParameter(uri: string) {
     const [a, ...b] = item.split('=');
     const arrValue = b.join('').split('%2C');
     // const arrSort = Number(arrValue[1]);
-    const c = a.split(' ').reduce((acc, v) => ({...acc, [v]: arrValue}), {});
+    const c = a.split(' ').reduce((acc, v) => ({ ...acc, [v]: arrValue }), {});
 
     // const obj = Object.create(...c);
     // c.reduce
     return c;
   });
   const obj: ExampleObject = queri.reduce((acc, val) => {
-    return {...acc, ...val};
+    return { ...acc, ...val };
   }, {});
   console.log(obj);
 
