@@ -8,6 +8,19 @@ import PhoneIMG6 from '../assets/png/samsunga12.png';
 import PhoneIMG7 from '../assets/png/samsungFlip3.png';
 import PhoneIMG8 from '../assets/png/samsungs21.png';
 import PhoneIMG9 from '../assets/png/samsungUltra.png';
+import PhoneIMG10 from '../assets/png/huaweiMate50Pro.png';
+import PhoneIMG11 from '../assets/png/huaweiNovaY61.png';
+import PhoneIMG12 from '../assets/png/huaweiNova10se.png';
+import PhoneIMG13 from '../assets/png/huaweiP50Problack.png';
+import PhoneIMG14 from '../assets/png/oppoA55.png';
+import PhoneIMG15 from '../assets/png/oppoa96.png';
+import PhoneIMG16 from '../assets/png/oppoReno7.png';
+import PhoneIMG17 from '../assets/png/onePlus10T5G.png';
+import PhoneIMG18 from '../assets/png/onePlusNordN205G.png';
+import PhoneIMG19 from '../assets/png/xiaomi11T.png';
+import PhoneIMG20 from '../assets/png/xiaomi12x.png';
+import PhoneIMG21 from '../assets/png/xiaomiMi11Lite5GNe.png';
+import PhoneIMG22 from '../assets/png/xiaomiMi12Lite.png';
 
 export const phonesData: Array<IPhones> = [
   {
@@ -98,6 +111,136 @@ export const phonesData: Array<IPhones> = [
     price: 500,
     amount: 14,
     image: PhoneIMG9,
+    button: 'Купить',
+  },
+  {
+    id: 10,
+    name: 'Huawei Mate50Pro',
+    manufacturer: 'Huawei',
+    color: 'orange',
+    price: 860,
+    amount: 1,
+    image: PhoneIMG10,
+    button: 'Купить',
+  },
+  {
+    id: 11,
+    name: 'Huawei Nova Y61',
+    manufacturer: 'Huawei',
+    color: 'blue',
+    price: 630,
+    amount: 9,
+    image: PhoneIMG11,
+    button: 'Купить',
+  },
+  {
+    id: 12,
+    name: 'Huawei Nova10SE',
+    manufacturer: 'Huawei',
+    color: 'silver',
+    price: 450,
+    amount: 3,
+    image: PhoneIMG12,
+    button: 'Купить',
+  },
+  {
+    id: 13,
+    name: 'Huawei P50 Pro',
+    manufacturer: 'Huawei',
+    color: 'black',
+    price: 920,
+    amount: 7,
+    image: PhoneIMG13,
+    button: 'Купить',
+  },
+  {
+    id: 14,
+    name: 'Oppo A55',
+    manufacturer: 'Oppo',
+    color: 'blue',
+    price: 420,
+    amount: 5,
+    image: PhoneIMG14,
+    button: 'Купить',
+  },
+  {
+    id: 15,
+    name: 'Oppo A96',
+    manufacturer: 'Oppo',
+    color: 'blue',
+    price: 680,
+    amount: 5,
+    image: PhoneIMG15,
+    button: 'Купить',
+  },
+  {
+    id: 16,
+    name: 'Oppo Reno7',
+    manufacturer: 'Oppo',
+    color: 'orange',
+    price: 970,
+    amount: 11,
+    image: PhoneIMG16,
+    button: 'Купить',
+  },
+  {
+    id: 17,
+    name: 'One Plus 10T5G',
+    manufacturer: 'One Plus',
+    color: 'black',
+    price: 270,
+    amount: 3,
+    image: PhoneIMG17,
+    button: 'Купить',
+  },
+  {
+    id: 18,
+    name: 'One Plus Nord',
+    manufacturer: 'One Plus',
+    color: 'black',
+    price: 460,
+    amount: 9,
+    image: PhoneIMG18,
+    button: 'Купить',
+  },
+  {
+    id: 19,
+    name: 'Xiaomi 11T',
+    manufacturer: 'Xiaomi',
+    color: 'blue',
+    price: 390,
+    amount: 19,
+    image: PhoneIMG19,
+    button: 'Купить',
+  },
+  {
+    id: 20,
+    name: 'Xiaomi 12x',
+    manufacturer: 'Xiaomi',
+    color: 'black',
+    price: 699,
+    amount: 13,
+    image: PhoneIMG20,
+    button: 'Купить',
+  },
+  {
+    id: 21,
+    name: 'Xiaomi Mi 11Lite 5G',
+    manufacturer: 'Xiaomi',
+    color: 'blue',
+    price: 399,
+    amount: 18,
+    image: PhoneIMG21,
+    button: 'Купить',
+  },
+  {
+    id: 22,
+    name: 'Xiaomi Mi 12Lite',
+    manufacturer: 'Xiaomi',
+    color: 'green',
+    price: 449,
+    amount: 8,
+    image: PhoneIMG22,
     button: 'Купить',
   },
 ];

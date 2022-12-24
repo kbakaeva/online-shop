@@ -14,10 +14,13 @@ export default class Basket extends Control {
   }
 
   renderCards(item: IPhones[]) {
+    const itemId = window.localStorage.getItem('itemId');
     this.wrapper = new Control(this.node, 'div', 'wrapper');
     const wrapper = this.wrapper.node;
     item.forEach((item) => {
-      this.cards = new Cards(wrapper, item);
+      if (+itemId === item.id) {
+        this.cards = new Cards(wrapper, item);
+      }
     });
   }
 }

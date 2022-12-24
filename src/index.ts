@@ -17,37 +17,34 @@ const initialState: IFilters = {
   amount: ['1', '14'],
   button: [],
 };
-interface ExampleObject {
-  [key: string]: string | number;
-}
-const local = window.location.search;
-function updateQueryStringParameter(uri: string) {
-  const queriSplit = uri.slice(1).split('&').slice(0);
-  const queri = queriSplit.map((item) => {
-    const [a, ...b] = item.split('=');
-    const arrValue = b.join('').split('%2C');
-    // const arrSort = Number(arrValue[1]);
-    const c = a.split(' ').reduce((acc, v) => ({ ...acc, [v]: arrValue }), {});
+// interface ExampleObject {
+//   [key: string]: string | number;
+// }
+// const local = window.location.search;
+// function updateQueryStringParameter(uri: string) {
+//   const queriSplit = uri.slice(1).split('&').slice(0);
+//   const queri = queriSplit.map((item) => {
+//     const [a, ...b] = item.split('=');
+//     const arrValue = b.join('').split('%2C');
+//     // const arrSort = Number(arrValue[1]);
+//     const c = a.split(' ').reduce((acc, v) => ({ ...acc, [v]: arrValue }), {});
 
-    // const obj = Object.create(...c);
-    // c.reduce
-    return c;
-  });
-  const obj: ExampleObject = queri.reduce((acc, val) => {
-    return { ...acc, ...val };
-  }, {});
-  console.log(obj);
+//     // const obj = Object.create(...c);
+//     // c.reduce
+//     return c;
+//   });
+//   const obj: ExampleObject = queri.reduce((acc, val) => {
+//     return { ...acc, ...val };
+//   }, {});
+//   return obj;
 
-  return obj;
+//   // state.setInit(obj);
 
-  // state.setInit(obj);
-
-  // return queri;
-}
+//   // return queri;
+// }
 
 // const localFunc = updateQueryStringParameter(local);
 // localFunc.sort;
-console.log(updateQueryStringParameter(local));
 
 state.setInit(initialState);
 
