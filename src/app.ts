@@ -12,6 +12,7 @@ export class App {
   constructor(parentNode: HTMLElement, state: State) {
     new Header(parentNode);
     const main = new Main(parentNode, state);
+
     this.currentPage = main;
 
     this.onHacheHandler = () => {
