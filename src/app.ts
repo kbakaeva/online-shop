@@ -1,9 +1,9 @@
-import {State} from './control/filterState';
+import { State } from './control/filterState';
 import Main from './components/main/main';
 import Header from './components/header/header';
 // import AppRoute from './control/router';
 import Control from './control/control';
-import {Basket} from './components/header/basket';
+import Basket from './components/basket/basket';
 
 export class App {
   header: Header;

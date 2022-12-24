@@ -1,6 +1,6 @@
-import {State} from './control/filterState';
-import {App} from './app';
-import {IFilters} from './interface/filter';
+import { State } from './control/filterState';
+import { App } from './app';
+import { IFilters } from './interface/filter';
 
 const root = document.createElement('div');
 root.classList.add('root');
@@ -64,14 +64,11 @@ function updateQueryStringParameter(uri: string) {
   // console.log(obj);
   return obj;
 
-  // state.setInit(obj);
-
-  // return queri;
-}
+//   // return queri;
+// }
 
 // const localFunc = updateQueryStringParameter(local);
 // localFunc.sort;
-console.log(updateQueryStringParameter(local));
 
 state.setInit(initialState);
 
