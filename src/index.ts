@@ -17,28 +17,52 @@ const initialState: IFilters = {
   amount: ['1', '14'],
   button: [],
 };
-// interface ExampleObject {
-//   [key: string]: string | number;
+interface ExampleObject {
+  [key: string]: string | number;
+}
+const local = window.location.search;
+// function sort(urlSort: string): number {
+
+//   urlSort =
+//   return 0;
 // }
-// const local = window.location.search;
-// function updateQueryStringParameter(uri: string) {
-//   const queriSplit = uri.slice(1).split('&').slice(0);
-//   const queri = queriSplit.map((item) => {
-//     const [a, ...b] = item.split('=');
-//     const arrValue = b.join('').split('%2C');
-//     // const arrSort = Number(arrValue[1]);
-//     const c = a.split(' ').reduce((acc, v) => ({ ...acc, [v]: arrValue }), {});
+// console.log(sort(local));
 
-//     // const obj = Object.create(...c);
-//     // c.reduce
-//     return c;
-//   });
-//   const obj: ExampleObject = queri.reduce((acc, val) => {
-//     return { ...acc, ...val };
-//   }, {});
-//   return obj;
+function updateQueryStringParameter(uri: string) {
+  const queriSplit = uri.slice(1).split('&').slice(0);
+  const sort = queriSplit[5];
+  console.log(sort);
+  console.log(queriSplit[6]);
+  // const sort = queriSplit.indexOf('sort=2');
+  // console.log('sort', sort);
 
-//   // state.setInit(obj);
+  const queri = queriSplit.map((item) => {
+    console.log(item.split('='));
+
+    const [a, ...b] = item.split('=');
+    const arrValue = b.join('').split('%2C');
+    // console.log(arrValue, 'asdas');
+
+    // console.log(decodeURI(arrValue.search));
+
+    // const arrSort = Number(arrValue[1]);
+
+    const c = a.split(' ').reduce((acc, v) => ({...acc, [v]: arrValue}), {});
+
+    return c;
+  });
+  // queri.map((a) => {
+  //   console.log(a === 'sort');
+  // });
+  const obj: ExampleObject = queri.reduce((acc, val) => {
+    return {...acc, ...val};
+  }, {});
+  // console.log(decodeURI(obj.search) as string);
+
+  // console.log((obj.sort = 0));
+  // console.log((obj.search = 'asdas'));
+  // console.log(obj);
+  return obj;
 
 //   // return queri;
 // }

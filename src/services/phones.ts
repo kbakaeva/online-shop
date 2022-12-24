@@ -22,7 +22,7 @@ import PhoneIMG20 from '../assets/png/xiaomi12x.png';
 import PhoneIMG21 from '../assets/png/xiaomiMi11Lite5GNe.png';
 import PhoneIMG22 from '../assets/png/xiaomiMi12Lite.png';
 
-export const phonesData: Array<IPhones> = [
+export const phonesData: IPhones[] = [
   {
     id: 1,
     name: 'iPhone 14 Pro Max',
