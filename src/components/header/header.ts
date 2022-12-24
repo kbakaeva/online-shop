@@ -14,7 +14,7 @@ export default class Header extends Control {
 
   textShop: Control<HTMLElement>;
 
-  constructor(parentNode: HTMLElement) {
+  constructor(parentNode: HTMLElement, localstor: number) {
     super(parentNode, 'header', 'header');
     this.textShop = new Control(this.node, 'h1', 'header__online-shop', 'Online-shop');
     this.main = new Control(this.node, 'div', 'header__block-basket');
@@ -31,9 +31,16 @@ export default class Header extends Control {
       window.location.hash = '';
       window.location.hash = 'basket';
     });
+    this.updateBasket(localstor);
+    // this.text.node.textContent = localstor.toString();
     // this.clearHash.setOnClick(() => {
     //   onClearLocalStore();
     // });
+  }
+  updateBasket(local: number) {
+    if (this.text) {
+      this.text.node.textContent = local.toString();
+    }
   }
   // updateBasket(state: number) {
   //   if (this.text) {

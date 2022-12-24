@@ -1,5 +1,5 @@
 import Control from '../../../control/control';
-import { State } from '../../../control/filterState';
+import {State} from '../../../control/filterState';
 import 'nouislider/dist/nouislider.css';
 import * as noUiSlider from 'nouislider';
 
@@ -26,12 +26,12 @@ export default class RangeSliderAmount extends Control {
       connect: true,
       range: {
         min: 1,
-        max: 14,
+        max: 19,
       },
       step: 1,
     });
     slider.noUiSlider.on('update', (values: string[], handle: number) => {
-      state.content = { ...state.content, amount: values };
+      state.content = {...state.content, amount: values};
       if (handle) {
         this.endNum.node.textContent = Math.ceil(Number(values[handle])).toString();
       } else {

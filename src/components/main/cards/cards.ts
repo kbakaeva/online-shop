@@ -1,6 +1,6 @@
 import './cards.scss';
 import Control from '../../../control/control';
-import { IPhones } from '../../../interface/phones';
+import {IPhones} from '../../../interface/phones';
 
 export default class Cards extends Control {
   title: Control<HTMLElement>;
@@ -17,7 +17,7 @@ export default class Cards extends Control {
 
   button: Control<HTMLElement>;
 
-  constructor(parentNode: HTMLElement, item: IPhones) {
+  constructor(parentNode: HTMLElement, item: IPhones, onButtonClick: () => void) {
     super(parentNode, 'div', 'block-cards');
     this.title = new Control(this.node, 'div', 'card__name', item.name);
     this.img = new Control(this.node, 'img', 'img-card', '', 'src', item.image);
@@ -40,6 +40,7 @@ export default class Cards extends Control {
 
     this.button.setOnClick(() => {
       this.localStorageAdd(item);
+      onButtonClick();
     });
   }
   localStorageAdd(item: IPhones) {

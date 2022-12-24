@@ -1,16 +1,17 @@
-import { State } from '../../control/filterState';
-import { IFilters } from '../../interface/filter';
-import { IPhones } from '../../interface/phones';
-import { phonesData } from '../../services/phones';
+import {State} from '../../control/filterState';
+import {IFilters} from '../../interface/filter';
+import {IPhones} from '../../interface/phones';
+import {phonesData} from '../../services/phones';
 import Control from '../../control/control';
 import Cards from './cards/cards';
-import { Sort } from './filters/sort';
-import { FilterColor } from './filters/color';
-import { Seach } from './filters/search';
-import { BrandFilter } from './filters/brand';
+import {Sort} from './filters/sort';
+import {FilterColor} from './filters/color';
+import {Search} from './filters/search';
+import {BrandFilter} from './filters/brand';
 import RangeSliderAmount from './filters/sliderAmount';
 import RangeSliderPrice from './filters/slider.Price';
 import './main.scss';
+import {StateBasket} from '@/control/stateBasket';
 
 export default class Main extends Control {
   title: Control<HTMLElement>;
@@ -19,7 +20,7 @@ export default class Main extends Control {
   sort: Sort;
   filterColorInput: FilterColor;
   blockSorts: Control<HTMLElement>;
-  search: Seach;
+  search: Search;
   found: Control<HTMLElement>;
   filter: BrandFilter;
   sliderAmount: RangeSliderAmount;
@@ -28,19 +29,20 @@ export default class Main extends Control {
   foundСounter: Control<HTMLElement>;
 
   blockFilters: Control<HTMLElement>;
+  model: StateBasket;
 
-  constructor(parentNode: HTMLElement, state: State) {
+  constructor(parentNode: HTMLElement, state: State, model: StateBasket) {
     super(parentNode, 'main', 'main');
     this.renderCards(phonesData);
     this.blockFilters = new Control(this.node, 'div', 'block-filters');
-    this.search = new Seach(this.blockFilters.node, state);
+    this.search = new Search(this.blockFilters.node, state);
     this.sort = new Sort(this.blockFilters.node, state);
     this.filterColorInput = new FilterColor(this.blockFilters.node, state);
     this.filter = new BrandFilter(this.blockFilters.node, state);
     this.sliderAmount = new RangeSliderAmount(this.blockFilters.node, state);
     this.sliderPrice = new RangeSliderPrice(this.blockFilters.node, state);
     this.foundСounter = new Control(this.blockFilters.node, 'div', 'counter', 'Found:');
-
+    this.model = model;
     const refresh = (el: IFilters) => {
       let result = this.sortPhones([...phonesData], el.sort);
       result = this.filterColor(result, el.color);
@@ -68,7 +70,9 @@ export default class Main extends Control {
     this.found = new Control(this.wrapper.node, 'p', 'not-found', 'no found');
     const wrapper = this.wrapper.node;
     item.forEach((item) => {
-      this.cards = new Cards(wrapper, item);
+      this.cards = new Cards(wrapper, item, () => {
+        this.model.setData(item.id);
+      });
       this.found.node.style.display = 'none';
     });
     if (wrapper.childNodes.length === 0) {
@@ -93,6 +97,9 @@ export default class Main extends Control {
     return data;
   }
   filterColor(data: IPhones[], color: string[]) {
+    if (!color.length) {
+      return data;
+    }
     return data.filter((element) => (color.length === 0 ? element : color.includes(element.color)));
   }
 
@@ -108,6 +115,9 @@ export default class Main extends Control {
   }
 
   filterPhones(data: IPhones[], manufacturer: string[]) {
+    if (!manufacturer.length) {
+      return data;
+    }
     return data.filter((element) =>
       manufacturer.length === 0 ? element : manufacturer.includes(element.manufacturer)
     );
