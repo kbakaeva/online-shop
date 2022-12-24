@@ -24,15 +24,14 @@
 
   &__text {
     font-family: $fontFamily;
-    font-size: 1rem;
+    font-size: $subTitle;
   }
 
   &__clear-hash {
-    height: 25px;
-    border-radius: 10px;
+    border-radius: $borderRadius;
     padding: 5px 10px;
     font-family: $fontFamily;
-    font-size: 1rem;
+    font-size: $subTitle;
   }
 
   &__clear-hash:hover {

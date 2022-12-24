@@ -1,12 +1,15 @@
 @import '../../../global.scss';
 
 .block-cards {
-  border: 2px solid;
+  border: 1px solid;
   margin: 10px;
-  color: #9c8d8d;
-  border-radius: 10px;
+  color: $grey;
+  border-radius: $borderRadius;
+  padding: 5px;
   height: 340px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .card:nth-child(1) {
@@ -14,16 +17,17 @@
   justify-content: center;
 }
 
+.card {
+  &__name {
+    font-size: $title;
+    font-family: $fontFamily;
+    text-align: center;
+  }
+}
+
 .btn {
   background-color: $green;
   padding: 5px 10px;
   color: $white;
-  border-radius: 5px;
+  border-radius: $borderRadius;
 }
-.card-basket {
-  background: #0b18b9;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-}
-

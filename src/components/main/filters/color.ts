@@ -6,7 +6,7 @@ export class FilterColor extends Control {
   blockColor: Control<HTMLElement>;
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'div', 'color');
-    const color = ['purple', 'black', 'red', 'white'];
+    const color = ['purple', 'black', 'red', 'white', 'orange', 'blue', 'silver', 'green'];
     const arrayColor: string[] = [];
     this.blockColor = new Control(this.node, 'div', 'color-content');
     this.color = new Control(this.blockColor.node, 'h3', 'color-title', 'Color');
