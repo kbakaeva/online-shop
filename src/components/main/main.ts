@@ -59,6 +59,7 @@ export default class Main extends Control {
     const wrapper = this.wrapper.node;
     item.forEach((item) => {
       this.cards = new Cards(wrapper, item);
+
       this.found.node.style.display = 'none';
     });
     if (wrapper.childNodes.length === 0) {
@@ -86,7 +87,25 @@ export default class Main extends Control {
   }
 
   searchPhones(data: IPhones[], search: string): IPhones[] {
-    return data.filter((element) => element.name.toLowerCase().includes(search.toLowerCase()));
+    // const arrayStr = data.map((b) => {
+    //   const name = b.name.toLowerCase();
+    //   const price = b.price.toString();
+    //   const manufacturer = b.manufacturer.toLowerCase();
+    //   const amount = b.amount.toString();
+    //   console.log(name);
+    //   // const array = [name, price, manufacturer, amount];
+    //   return [name, price, manufacturer, amount];
+    //   // const [name, price, manufacturer, amount] = b;
+    // });
+
+    // const arr = arrayStr.flat();
+    // console.log(b);
+
+    // b.filter((element) => {
+    //   console.log(element);
+    // });
+
+    return data.filter((element) => element.amount.toString().toLowerCase().includes(search.toLowerCase()));
   }
 
   filterPhones(data: IPhones[], manufacturer: string[]) {
