@@ -1,6 +1,6 @@
-import { State } from './control/filterState';
-import { App } from './app';
-import { IFilters } from './interface/filter';
+import {State} from './control/filterState';
+import {App} from './app';
+import {IFilters} from './interface/filter';
 
 const root = document.createElement('div');
 root.classList.add('root');
@@ -14,61 +14,55 @@ const initialState: IFilters = {
   manufacturer: [],
   color: [],
   price: ['150', '1300'],
-  amount: ['1', '14'],
+  amount: ['1', '19'],
   button: [],
 };
-interface ExampleObject {
-  [key: string]: string | number;
-}
-const local = window.location.search;
-// function sort(urlSort: string): number {
-
-//   urlSort =
-//   return 0;
+// const initialState: IFilters = {
+//   sort: 0,
+//   search: '',
+//   manufacturer: [],
+//   color: [],
+//   price: ['150', '1300'],
+//   amount: ['1', '19'],
+//   button: [],
+// };
+// interface ExampleObject {
+//   [key: string]: string | number | [];
 // }
-// console.log(sort(local));
+// const local = window.location.search;
 
-function updateQueryStringParameter(uri: string) {
-  const queriSplit = uri.slice(1).split('&').slice(0);
-  const sort = queriSplit[5];
-  console.log(sort);
-  console.log(queriSplit[6]);
-  // const sort = queriSplit.indexOf('sort=2');
-  // console.log('sort', sort);
+// function updateQueryStringParameter(url: string) {
+//   const queriSplit = url.slice(1).split('&').slice(0);
 
-  const queri = queriSplit.map((item) => {
-    console.log(item.split('='));
+//   const queri = queriSplit.map((item) => {
+//     const [a, ...b] = item.split('=');
+//     const arrValue = b.join('').split('%2C');
 
-    const [a, ...b] = item.split('=');
-    const arrValue = b.join('').split('%2C');
-    // console.log(arrValue, 'asdas');
+//     // console.log(decodeURI(arrValue.search));
 
-    // console.log(decodeURI(arrValue.search));
+//     const x: ExampleObject = a.split(' ').reduce((acc, v) => ({...acc, [v]: arrValue}), {});
 
-    // const arrSort = Number(arrValue[1]);
+//     return x;
+//   });
 
-    const c = a.split(' ').reduce((acc, v) => ({...acc, [v]: arrValue}), {});
+//   console.log(queri);
 
-    return c;
-  });
-  // queri.map((a) => {
-  //   console.log(a === 'sort');
-  // });
-  const obj: ExampleObject = queri.reduce((acc, val) => {
-    return {...acc, ...val};
-  }, {});
-  // console.log(decodeURI(obj.search) as string);
+//   const obj = queri.reduce((acc, val) => {
+//     return {...acc, ...val};
+//   }, {});
+//   if (!obj.search || obj.sort) {
+//     const search = obj.search.toString();
+//     const sort = Number(obj.sort);
 
-  // console.log((obj.sort = 0));
-  // console.log((obj.search = 'asdas'));
-  // console.log(obj);
-  return obj;
+//     obj.search = search;
+//     obj.sort = sort;
+//   }
 
-//   // return queri;
+//   return obj;
 // }
+// console.log(updateQueryStringParameter(local));
 
-// const localFunc = updateQueryStringParameter(local);
-// localFunc.sort;
+// state.setInit(updateQueryStringParameter(local));
 
 state.setInit(initialState);
 

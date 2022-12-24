@@ -1,7 +1,7 @@
-import { phonesData } from '../../services/phones';
+import {phonesData} from '../../services/phones';
 import Control from '../../control/control';
 import Cards from './cards/cards';
-import { IPhones } from '../../interface/phones';
+import {IPhones} from '../../interface/phones';
 
 export default class Basket extends Control {
   text: Control<HTMLElement> | undefined;
@@ -14,7 +14,9 @@ export default class Basket extends Control {
   }
 
   renderCards(item: IPhones[]) {
-    const itemId = window.localStorage.getItem('itemId');
+    const itemId = window.localStorage.getItem('basket');
+    console.log(itemId);
+
     this.wrapper = new Control(this.node, 'div', 'wrapper');
     const wrapper = this.wrapper.node;
     item.forEach((item) => {
