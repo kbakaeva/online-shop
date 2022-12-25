@@ -1,6 +1,6 @@
-import {State} from './control/filterState';
-import {App} from './app';
-import {IFilters} from './interface/filter';
+import { State } from './control/filterState';
+import { App } from './app';
+import { IFilters } from './interface/filter';
 
 const root = document.createElement('div');
 root.classList.add('root');
