@@ -1,4 +1,4 @@
-import {IPhones} from '../interface/phones';
+import { IPhones } from '../interface/phones';
 import PhoneIMG1 from '../assets/png/iphone14purple.png';
 import PhoneIMG2 from '../assets/png/iphone14black.png';
 import PhoneIMG3 from '../assets/png/iphone11red.png';

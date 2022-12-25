@@ -1,5 +1,5 @@
 import Control from '../../../control/control';
-import {State} from '../../../control/filterState';
+import { State } from '../../../control/filterState';
 
 export class FilterColor extends Control {
   color: Control<HTMLElement>;
@@ -18,10 +18,10 @@ export class FilterColor extends Control {
         const index = arrayColor.indexOf(item);
         if (index === -1) {
           arrayColor.push(item);
-          state.content = {...state.content, color: [...arrayColor]};
+          state.content = { ...state.content, color: [...arrayColor] };
         } else {
           arrayColor.splice(index, 1);
-          state.content = {...state.content, color: [...arrayColor]};
+          state.content = { ...state.content, color: [...arrayColor] };
         }
       };
     });

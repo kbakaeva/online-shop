@@ -1,5 +1,5 @@
 import Signal from './signal';
-import {IFilters} from '../interface/filter';
+import { IFilters } from '../interface/filter';
 
 // export const filterState: IFilters = {
 //   sort: 0,
