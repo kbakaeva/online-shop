@@ -6,21 +6,24 @@ import Control from './control/control';
 import Basket from './components/basket/basket';
 
 import {StateBasket} from './control/stateBasket';
+// import {initialState} from '.';
 
 export class App {
   header: Header;
   currentPage: Control<HTMLElement>;
   onHacheHandler: () => void;
   constructor(parentNode: HTMLElement, state: State) {
-    this.header = new Header(parentNode, localStorage.length);
-    const stateBasket = new StateBasket([]);
+    const getLocalStorage = JSON.parse(localStorage.getItem('basket')) ?? [];
+    const stateBasket = new StateBasket(getLocalStorage);
+
+    this.header = new Header(parentNode, getLocalStorage?.length);
     const main = new Main(parentNode, state, stateBasket);
-    this.header.updateBasket(stateBasket.data.length ?? 0);
+    this.header.updateBasket(stateBasket.data.length);
     stateBasket.onUpdate = (data: number[]) => {
       this.header.updateBasket(data.length);
     };
+    // state.onChange.remove(initialState);
     this.currentPage = main;
-    // console.log(localStorage.length);
     // window.onstorage = (event) => {
     //   console.log(event.key);
     // };
@@ -46,8 +49,3 @@ export class App {
     window.addEventListener('hashchange', this.onHacheHandler);
   }
 }
-
-// npm i -D gh-pages
-// "deploy": "npm run build && npx gh-pages -d dist -e migration-newip-to-ts"
-// npm run deploy -e online-shop вытащить из диста файлы и перекинет их в папку online-shop
-// -e команда которая создаст папку

@@ -12,29 +12,38 @@ import RangeSliderAmount from './filters/sliderAmount';
 import RangeSliderPrice from './filters/slider.Price';
 import './main.scss';
 import {StateBasket} from '@/control/stateBasket';
+import {initialState} from '../../index';
 
 export default class Main extends Control {
-  title: Control<HTMLElement>;
-  cards: Cards;
-  wrapper: Control<HTMLElement>;
-  sort: Sort;
-  filterColorInput: FilterColor;
-  blockSorts: Control<HTMLElement>;
-  search: Search;
-  found: Control<HTMLElement>;
-  filter: BrandFilter;
-  sliderAmount: RangeSliderAmount;
-  sliderPrice: RangeSliderPrice;
+  private title: Control<HTMLElement>;
+  private cards: Cards;
+  private wrapper: Control<HTMLElement>;
+  private sort: Sort;
+  private filterColorInput: FilterColor;
+  private blockSorts: Control<HTMLElement>;
+  private search: Search;
+  private found: Control<HTMLElement>;
+  private filter: BrandFilter;
+  private sliderAmount: RangeSliderAmount;
+  private sliderPrice: RangeSliderPrice;
 
-  foundСounter: Control<HTMLElement>;
+  private foundСounter: Control<HTMLElement>;
 
-  blockFilters: Control<HTMLElement>;
-  model: StateBasket;
+  private blockFilters: Control<HTMLElement>;
+  private model: StateBasket;
+  resetFilters: Control<HTMLElement>;
+  copyFilters: Control<HTMLElement>;
 
   constructor(parentNode: HTMLElement, state: State, model: StateBasket) {
     super(parentNode, 'main', 'main');
+
     this.renderCards(phonesData);
     this.blockFilters = new Control(this.node, 'div', 'block-filters');
+    this.resetFilters = new Control(this.blockFilters.node, 'button', 'reset-filters', 'Reset Filters');
+    this.copyFilters = new Control(this.blockFilters.node, 'button', 'copy-link', 'Copy link');
+    this.copyFilters.setOnClick(() => {
+      navigator.clipboard.writeText(window.location.toString());
+    });
     this.search = new Search(this.blockFilters.node, state);
     this.sort = new Sort(this.blockFilters.node, state);
     this.filterColorInput = new FilterColor(this.blockFilters.node, state);
@@ -63,9 +72,15 @@ export default class Main extends Control {
     state.onChange.add(refresh);
 
     refresh(state.content);
+    this.resetFilters.setOnClick(() => {
+      state.setInit(initialState);
+      state.onChange.add(refresh);
+      refresh(state.content);
+      console.log(state.content);
+    });
   }
 
-  renderCards(item: IPhones[]) {
+  private renderCards(item: IPhones[]) {
     this.wrapper = new Control(this.node, 'div', 'wrapper');
     this.found = new Control(this.wrapper.node, 'p', 'not-found', 'no found');
     const wrapper = this.wrapper.node;
@@ -81,7 +96,10 @@ export default class Main extends Control {
     }
   }
 
-  sortPhones(data: IPhones[], index: number) {
+  private sortPhones(data: IPhones[], index: number) {
+    if (index === 0) {
+      return data;
+    }
     if (index === 1) {
       return data.sort((a, b) => a.name.localeCompare(b.name));
     }
@@ -96,14 +114,14 @@ export default class Main extends Control {
     }
     return data;
   }
-  filterColor(data: IPhones[], color: string[]) {
+  private filterColor(data: IPhones[], color: string[]) {
     if (!color.length) {
       return data;
     }
     return data.filter((element) => (color.length === 0 ? element : color.includes(element.color)));
   }
 
-  searchPhones(data: IPhones[], search: string): IPhones[] {
+  private searchPhones(data: IPhones[], search: string): IPhones[] {
     return data.filter(
       (element) =>
         element.amount.toString().toLowerCase().includes(search.toLowerCase()) ||
@@ -114,7 +132,7 @@ export default class Main extends Control {
     );
   }
 
-  filterPhones(data: IPhones[], manufacturer: string[]) {
+  private filterPhones(data: IPhones[], manufacturer: string[]) {
     if (!manufacturer.length) {
       return data;
     }
@@ -122,10 +140,10 @@ export default class Main extends Control {
       manufacturer.length === 0 ? element : manufacturer.includes(element.manufacturer)
     );
   }
-  sliderPhonesAmount(data: IPhones[], value: (string | number)[]) {
+  private sliderPhonesAmount(data: IPhones[], value: (string | number)[]) {
     return data.filter((element) => +value[0] <= +element.amount && +value[1] >= +element.amount);
   }
-  sliderPhonesPrice(data: IPhones[], value: (string | number)[]) {
+  private sliderPhonesPrice(data: IPhones[], value: (string | number)[]) {
     return data.filter((element) => +value[0] <= +element.price && +value[1] >= +element.price);
   }
 }
