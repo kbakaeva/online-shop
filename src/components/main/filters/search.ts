@@ -11,7 +11,6 @@ export class Search extends Control {
     this.input = new Control(this.node, 'input', 'search');
     const cross = new Control(this.node, 'div', 'cross');
     cross.setOnClick(() => {
-
       state.content = { ...state.content, search: (this.input.node.value = '') };
     });
     if (state.content.search) {
@@ -19,7 +18,7 @@ export class Search extends Control {
     }
     this.input.node.placeholder = 'Search';
     this.input.node.oninput = () => {
-      state.content = {...state.content, search: this.input.node.value.trim()};
+      state.content = { ...state.content, search: this.input.node.value.trim() };
     };
   }
 }

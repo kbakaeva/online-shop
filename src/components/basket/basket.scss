@@ -1,11 +1,49 @@
 @import '../../global.scss';
 
-// .wrapper {
-//   display: flex;
-//   flex-wrap: wrap;
-//   width: 100%;
-//   margin: 10px 0;
-// }
+
+
+.basket {
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.discount {
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  height: 100px;
+  font-size: $title;
+  font-family: $fontFamily;
+  margin: 20px;
+  border: 1px solid $grey;
+  border-radius: $borderRadius;
+  padding: 10px;
+  background: $beige;
+  justify-content: space-evenly;
+
+  &__title {
+    font-size: $subTitle;
+  }
+
+  &__input {
+    font-size: $subTitle;
+    border-radius: $borderRadius;
+  }
+}
+
+.input-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
 
 .counter {
   flex-direction: row;
