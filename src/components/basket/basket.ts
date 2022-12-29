@@ -14,6 +14,7 @@ export default class Basket extends Control {
   }
 
   renderCards(item: IPhones[]) {
+
     const itemId = JSON.parse(window.localStorage.getItem('basket'));
     this.wrapper = new Control(this.node, 'div', 'wrapper');
     const wrapper = this.wrapper.node;

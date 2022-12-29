@@ -30,7 +30,6 @@ export class State {
         this.params.set(key, val);
       }
     }
-
     const newRelativePathQuery = window.location.pathname + '?' + this.params.toString();
     history.pushState(null, '', newRelativePathQuery);
   }

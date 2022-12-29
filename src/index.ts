@@ -8,7 +8,7 @@ root.setAttribute('id', 'root');
 document.body.append(root);
 
 const state = new State();
-const initialState: IFilters = {
+export const initialState: IFilters = {
   sort: 0,
   search: '',
   manufacturer: [],
@@ -26,44 +26,46 @@ const initialState: IFilters = {
 //   amount: ['1', '19'],
 //   button: [],
 // };
-// interface ExampleObject {
-//   [key: string]: string | number | [];
-// }
-// const local = window.location.search;
+interface ExampleObject {
+  [key: string]: string | number | [];
+}
+const local = window.location.search;
 
-// function updateQueryStringParameter(url: string) {
-//   const queriSplit = url.slice(1).split('&').slice(0);
+function updateQueryStringParameter(url: string) {
+  const queriSplit = url.slice(1).split('&').slice(0);
 
-//   const queri = queriSplit.map((item) => {
-//     const [a, ...b] = item.split('=');
-//     const arrValue = b.join('').split('%2C');
+  const queri = queriSplit.map((item) => {
+    const [key, ...value] = item.split('=');
+    if (value[0] === '') {
+      return;
+    }
+    const arrValue = value.join('').split('%2C');
 
-//     // console.log(decodeURI(arrValue.search));
+    // console.log(decodeURI(arrValue.search));
 
-//     const x: ExampleObject = a.split(' ').reduce((acc, v) => ({...acc, [v]: arrValue}), {});
+    const x: ExampleObject = key.split(' ').reduce((acc, v) => ({...acc, [v]: arrValue}), {});
 
-//     return x;
-//   });
+    return x;
+  });
 
-//   console.log(queri);
+  const obj = queri.reduce((acc, val) => {
+    return {...acc, ...val};
+  }, {});
+  if (obj.search) {
+    const search = obj.search.toString();
+    obj.search = search;
+  }
+  if (obj.sort) {
+    const sort = Number(obj.sort);
+    obj.sort = sort;
+  }
 
-//   const obj = queri.reduce((acc, val) => {
-//     return {...acc, ...val};
-//   }, {});
-//   if (!obj.search || obj.sort) {
-//     const search = obj.search.toString();
-//     const sort = Number(obj.sort);
-
-//     obj.search = search;
-//     obj.sort = sort;
-//   }
-
-//   return obj;
-// }
+  return obj as unknown as IFilters;
+}
 // console.log(updateQueryStringParameter(local));
 
 // state.setInit(updateQueryStringParameter(local));
 
-state.setInit(initialState);
+state.setInit({...initialState, ...updateQueryStringParameter(local)});
 
 new App(root, state);

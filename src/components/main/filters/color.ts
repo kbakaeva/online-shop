@@ -4,6 +4,7 @@ import { State } from '../../../control/filterState';
 export class FilterColor extends Control {
   color: Control<HTMLElement>;
   blockColor: Control<HTMLElement>;
+  colorItem: Control<HTMLInputElement>;
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'div', 'color');
     const color = ['purple', 'black', 'red', 'white', 'orange', 'blue', 'silver', 'green'];
@@ -12,9 +13,14 @@ export class FilterColor extends Control {
     this.color = new Control(this.blockColor.node, 'h3', 'color-title', 'Color');
     color.forEach((item) => {
       const filterColorBlock = new Control(this.node, 'div', 'color-block');
-      const colorItem = new Control(filterColorBlock.node, 'input', 'color-check', item, 'type', 'checkbox');
+      this.colorItem = new Control(filterColorBlock.node, 'input', 'color-check', item, 'type', 'checkbox');
+      if (state.content.color.includes(item)) {
+        this.colorItem.node.checked = true;
+      }
+
       new Control(filterColorBlock.node, 'label', 'color-label', item);
-      colorItem.node.onclick = () => {
+
+      this.colorItem.node.onclick = () => {
         const index = arrayColor.indexOf(item);
         if (index === -1) {
           arrayColor.push(item);
