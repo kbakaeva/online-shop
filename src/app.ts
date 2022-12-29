@@ -1,12 +1,11 @@
-import {State} from './control/filterState';
+import { State } from './control/filterState';
 import Main from './components/main/main';
 import Header from './components/header/header';
 // import AppRoute from './control/router';
 import Control from './control/control';
 import Basket from './components/basket/basket';
 
-import {StateBasket} from './control/stateBasket';
-// import {initialState} from '.';
+import { StateBasket } from './control/stateBasket';
 
 export class App {
   header: Header;

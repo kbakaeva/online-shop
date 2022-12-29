@@ -1,20 +1,18 @@
-import {State} from '../../control/filterState';
-import {IFilters} from '../../interface/filter';
-import {IPhones} from '../../interface/phones';
-import {phonesData} from '../../services/phones';
+import { State } from '../../control/filterState';
+import { IFilters } from '../../interface/filter';
+import { IPhones } from '../../interface/phones';
+import { phonesData } from '../../services/phones';
 import Control from '../../control/control';
 import Cards from './cards/cards';
-import {Sort} from './filters/sort';
-import {FilterColor} from './filters/color';
-import {Search} from './filters/search';
-import {BrandFilter} from './filters/brand';
+import { Sort } from './filters/sort';
+import { FilterColor } from './filters/color';
+import { Search } from './filters/search';
+import { BrandFilter } from './filters/brand';
 import RangeSliderAmount from './filters/sliderAmount';
 import RangeSliderPrice from './filters/slider.Price';
 import './main.scss';
-import {StateBasket} from '@/control/stateBasket';
 import {initialState} from '../../index';
-// import line from '../../assets/svg/line.svg';
-// import coub from '../../assets/svg/coub.svg';
+import { StateBasket } from '@/control/stateBasket';
 
 export default class Main extends Control {
   private title: Control<HTMLElement>;

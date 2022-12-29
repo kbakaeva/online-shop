@@ -1,6 +1,6 @@
 import './cards.scss';
 import Control from '../../../control/control';
-import {IPhones} from '../../../interface/phones';
+import { IPhones } from '../../../interface/phones';
 
 export default class Cards extends Control {
   title: Control<HTMLElement>;

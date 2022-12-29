@@ -37,6 +37,7 @@ export default class Header extends Control {
     //   onClearLocalStore();
     // });
   }
+
   updateBasket(local: number) {
     if (this.text) {
       this.text.node.textContent = local.toString();

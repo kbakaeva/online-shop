@@ -1,0 +1,32 @@
+@import '../../../global.scss';
+
+.counter {
+  display: flex;
+  width: 80%;
+  padding: 0px 5%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color: $black;
+  font-weight: $bold;
+  align-items: center;
+
+  &__sign {
+    display: flex;
+    flex-direction: row;
+    background-color: $black;
+    color: $white;
+    padding: 5px 20px;
+    border-radius: $borderRadius;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__sign:hover {
+    cursor: pointer;
+    background-color: $green;
+  }
+
+  &__number {
+    padding: 5px 20px;
+  }
+}

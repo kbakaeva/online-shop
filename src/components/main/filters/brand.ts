@@ -1,5 +1,5 @@
 import Control from '../../../control/control';
-import {State} from '../../../control/filterState';
+import { State } from '../../../control/filterState';
 
 export class BrandFilter extends Control {
   manufacturerItem: Control<HTMLInputElement>;
@@ -23,10 +23,10 @@ export class BrandFilter extends Control {
         const index = arrayManufacturer.indexOf(item);
         if (index === -1) {
           arrayManufacturer.push(item);
-          state.content = {...state.content, manufacturer: [...arrayManufacturer]};
+          state.content = { ...state.content, manufacturer: [...arrayManufacturer] };
         } else {
           arrayManufacturer.splice(index, 1);
-          state.content = {...state.content, manufacturer: [...arrayManufacturer]};
+          state.content = { ...state.content, manufacturer: [...arrayManufacturer] };
         }
       };
     });
