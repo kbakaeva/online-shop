@@ -1,9 +1,16 @@
 @import '../../../global.scss';
 
+.counter-block {
+  display: flex;
+  flex-direction: column;
+  height: 45px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .counter {
   display: flex;
-  width: 80%;
-  padding: 0px 5%;
+  padding: 5px 0px;
   flex-direction: row;
   justify-content: space-evenly;
   color: $black;
@@ -28,5 +35,9 @@
 
   &__number {
     padding: 5px 20px;
+  }
+
+  &__total {
+    font-weight: $bold;
   }
 }

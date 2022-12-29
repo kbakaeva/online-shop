@@ -23,7 +23,7 @@ export default class Cards extends Control {
     this.img = new Control(this.node, 'img', 'img-card', '', 'src', item.image);
     this.subtitle = new Control(this.node, 'div', 'card', `Производитель: ${item.manufacturer}`);
     this.color = new Control(this.node, 'div', 'card', `Цвет: ${item.color}`);
-    this.price = new Control(this.node, 'div', 'card', `Цена: ${item.price}`);
+    this.price = new Control(this.node, 'div', 'card', `Цена: $${item.price}`);
     this.amount = new Control(this.node, 'div', 'card', `Количество: ${item.amount}`);
     this.button = new Control(this.node, 'button', 'card-basket');
 

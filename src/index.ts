@@ -6,7 +6,6 @@ const root = document.createElement('div');
 root.classList.add('root');
 root.setAttribute('id', 'root');
 document.body.append(root);
-
 const state = new State();
 export const initialState: IFilters = {
   sort: 0,
@@ -30,26 +29,21 @@ interface ExampleObject {
   [key: string]: string | number | [];
 }
 const local = window.location.search;
-
 function updateQueryStringParameter(url: string) {
   const queriSplit = url.slice(1).split('&').slice(0);
-
   const queri = queriSplit.map((item) => {
     const [key, ...value] = item.split('=');
     if (value[0] === '') {
       return;
     }
     const arrValue = value.join('').split('%2C');
-
     // console.log(decodeURI(arrValue.search));
-
-    const x: ExampleObject = key.split(' ').reduce((acc, v) => ({...acc, [v]: arrValue}), {});
-
+    const x: ExampleObject = key.split(' ').reduce((acc, v) => ({ ...acc, [v]: arrValue }), {});
     return x;
   });
 
   const obj = queri.reduce((acc, val) => {
-    return {...acc, ...val};
+    return { ...acc, ...val };
   }, {});
   if (obj.search) {
     const search = obj.search.toString();
@@ -59,13 +53,9 @@ function updateQueryStringParameter(url: string) {
     const sort = Number(obj.sort);
     obj.sort = sort;
   }
-
   return obj as unknown as IFilters;
 }
 // console.log(updateQueryStringParameter(local));
-
 // state.setInit(updateQueryStringParameter(local));
-
-state.setInit({...initialState, ...updateQueryStringParameter(local)});
-
+state.setInit({ ...initialState, ...updateQueryStringParameter(local) });
 new App(root, state);
