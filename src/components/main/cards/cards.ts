@@ -57,4 +57,7 @@ export default class Cards extends Control {
       this.button.node.style.background = 'green';
     }
   }
+  // cardDisplayNone(){
+
+  // }
 }

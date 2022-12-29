@@ -8,7 +8,7 @@ export class BrandFilter extends Control {
   blockManufacturer: Control<HTMLElement>;
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'div', 'brand');
-    const manufacturer = ['Oppo', 'Samsung', 'Apple', 'Xiaomi', 'Oneplus', 'Huawei'];
+    const manufacturer = ['Oppo', 'Samsung', 'Apple', 'Xiaomi', 'One Plus', 'Huawei'];
     const arrayManufacturer: string[] = [];
     this.blockManufacturer = new Control(this.node, 'div', 'brand-content');
     this.manufacturer = new Control(this.blockManufacturer.node, 'h3', 'brand-title', 'Brand');
