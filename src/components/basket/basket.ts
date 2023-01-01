@@ -3,9 +3,6 @@ import Control from '../../control/control';
 import Cards from './cards/cards';
 import { IPhones } from '../../interface/phones';
 import './basket.scss';
-// import { totalSum } from '@/control/totalSum';
-
-// type up = (date: number) => void;
 
 export default class Basket extends Control {
   cards: Cards;
@@ -16,20 +13,18 @@ export default class Basket extends Control {
   text: Control<HTMLElement> | undefined;
   code: Control<HTMLElement>;
   result: Control<HTMLElement>;
-  // totalSum: any;
-  // totalSum: number[];
-  // onUpdate!: up;
+  checkout: Control<HTMLElement>;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'basket', 'basket');
     this.discountBlock = new Control(this.node, 'div', 'discount');
-    this.summ = new Control(this.discountBlock.node, 'p', 'discount__title');
     this.inputRow = new Control(this.discountBlock.node, 'div', 'input-row');
     this.text = new Control(this.inputRow.node, 'p', 'discount__title', 'Ваш купон:');
     this.code = new Control(this.inputRow.node, 'input', 'discount__input');
     this.result = new Control(this.discountBlock.node, 'p', 'discount__title', `К оплате: ${0} $`);
+    this.checkout = new Control(this.discountBlock.node, 'button', 'discount__btn', 'Оформить заказ');
     this.renderCards(phonesData);
-    this.updateSum();
+    // this.updateSum();
   }
 
   renderCards(item: IPhones[]) {
@@ -45,15 +40,13 @@ export default class Basket extends Control {
     });
   }
 
-  updateSum() {
-    const totalSum = JSON.parse(window.localStorage.getItem('totalSum'));
-    // this.onUpdate(totalSum);
-    console.log('totalSum', totalSum);
-    const sum = [...new Map(totalSum.map((item: Record<string, number>) => [item['id'], item])).values()].reduce(
-      (t: number, el: Record<string, number>) => t + el.price,
-      0
-    );
+  // updateSum() {
+  //   const totalSum = JSON.parse(window.localStorage.getItem('totalSum'));
+  //   const sum = [...new Map(totalSum.map((item: Record<string, number>) => [item['id'], item])).values()].reduce(
+  //     (t: number, el: Record<string, number>) => t + el.price,
+  //     0
+  //   );
 
-    this.summ.node.textContent = String(sum);
-  }
+  //   this.summ.node.textContent = String(sum);
+  // }
 }
