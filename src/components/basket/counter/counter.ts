@@ -1,3 +1,4 @@
+// import { totalSuma } from '../../../control/totalSum';
 import Control from '../../../control/control';
 import { IPhones } from '../../../interface/phones';
 import './counter.scss';
@@ -21,11 +22,14 @@ export class Counter extends Control {
       'counter__total',
       `Итого сумма: ${+this.counter.node.textContent * item.price}`
     );
+    // const totSum = new totalSuma(0);
+
     const totalSum = JSON.parse(window.localStorage.getItem('totalSum')) || [];
     localStorage.setItem(
       'totalSum',
       JSON.stringify([...totalSum, { id: item.id, price: +this.counter.node.textContent * item.price }])
     );
+
     this.increment.setOnClick(() => {
       this.onIncrement(item);
     });
@@ -34,7 +38,7 @@ export class Counter extends Control {
     });
   }
 
-  onIncrement = (item: IPhones) => {
+  onIncrement(item: IPhones) {
     if (+this.counter.node.textContent < +item.amount) {
       this.counter.node.textContent = (+this.counter.node.textContent + 1).toString();
       if (this.total) {
@@ -53,9 +57,9 @@ export class Counter extends Control {
         JSON.stringify([...totalSum, { id: item.id, price: +this.counter.node.textContent * item.price }])
       );
     }
-  };
+  }
 
-  onDecrement = (item: IPhones) => {
+  onDecrement(item: IPhones) {
     if (+this.counter.node.textContent !== 1) {
       this.counter.node.textContent = (+this.counter.node.textContent - 1).toString();
       if (this.total) {
@@ -74,5 +78,5 @@ export class Counter extends Control {
         JSON.stringify([...totalSum, { id: item.id, price: +this.counter.node.textContent * item.price }])
       );
     }
-  };
+  }
 }

@@ -19,6 +19,7 @@ export class App {
     const main = new Main(parentNode, state, stateBasket);
     this.header.updateBasket(stateBasket.data.length);
     stateBasket.onUpdate = (data: number[]) => {
+      // const reduce = data.reduce((a, b) => a + b, 0);
       this.header.updateBasket(data.length);
     };
     // state.onChange.remove(initialState);

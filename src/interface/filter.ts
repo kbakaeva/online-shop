@@ -5,5 +5,5 @@ export interface IFilters {
   color: string[];
   price: (number | string)[];
   amount: (number | string)[];
-  button: (number | string)[];
+  button: string[];
 }
