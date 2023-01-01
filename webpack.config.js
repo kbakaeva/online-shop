@@ -21,7 +21,7 @@ const config = {
     new HtmlWebpackPlugin({
       template: 'index.html',
     }),
-    new EslingPlugin({extensions: 'ts'}),
+    new EslingPlugin({ extensions: 'ts' }),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],

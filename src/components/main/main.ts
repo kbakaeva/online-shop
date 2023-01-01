@@ -50,6 +50,10 @@ export default class Main extends Control {
     this.sortLine.node.innerHTML = `<svg width='16' height='16' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M2.91 1.455c-.804 0-1.456.65-1.456 1.454v1.455c0 .804.652 1.455 1.455 1.455H13c.803 0 1.455-.651 1.455-1.455V2.91c0-.803-.652-1.454-1.455-1.454H2.91ZM0 2.909A2.91 2.91 0 0 1 2.91 0H13a2.91 2.91 0 0 1 2.91 2.91v1.454A2.91 2.91 0 0 1 13 7.274H2.91A2.91 2.91 0 0 1 0 4.364V2.91Zm2.91 7.272c-.804 0-1.456.651-1.456 1.455v1.455c0 .803.652 1.455 1.455 1.455H13c.803 0 1.455-.652 1.455-1.455v-1.455c0-.804-.652-1.455-1.455-1.455H2.91ZM0 11.636a2.91 2.91 0 0 1 2.91-2.91H13a2.91 2.91 0 0 1 2.91 2.91v1.455A2.91 2.91 0 0 1 13 16H2.91A2.91 2.91 0 0 1 0 13.09v-1.454Z' fill='#333'/></svg>`;
     this.sortCoub = new Control(this.blockFilters.node, 'button', 'coub', 'coub');
     this.sortCoub.node.innerHTML = `<svg width='16' height='16' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M2.91 1.455c-.804 0-1.456.65-1.456 1.454v1.455c0 .804.652 1.455 1.455 1.455h1.455c.803 0 1.454-.651 1.454-1.455V2.91c0-.803-.65-1.454-1.454-1.454H2.909ZM0 2.909A2.91 2.91 0 0 1 2.91 0h1.454a2.91 2.91 0 0 1 2.909 2.91v1.454a2.91 2.91 0 0 1-2.91 2.91H2.91A2.91 2.91 0 0 1 0 4.364V2.91Zm11.636-1.454c-.803 0-1.454.65-1.454 1.454v1.455c0 .804.65 1.455 1.454 1.455h1.455c.803 0 1.455-.651 1.455-1.455V2.91c0-.803-.652-1.454-1.455-1.454h-1.455ZM8.727 2.909A2.91 2.91 0 0 1 11.637 0h1.454A2.91 2.91 0 0 1 16 2.91v1.454a2.91 2.91 0 0 1-2.91 2.91h-1.454a2.91 2.91 0 0 1-2.909-2.91V2.91ZM2.91 10.181c-.803 0-1.455.651-1.455 1.455v1.455c0 .803.652 1.455 1.455 1.455h1.455c.803 0 1.454-.652 1.454-1.455v-1.455c0-.804-.65-1.455-1.454-1.455H2.909ZM0 11.636a2.91 2.91 0 0 1 2.91-2.91h1.454a2.91 2.91 0 0 1 2.909 2.91v1.455A2.91 2.91 0 0 1 4.363 16H2.91A2.91 2.91 0 0 1 0 13.09v-1.454Zm11.636-1.455c-.803 0-1.454.651-1.454 1.455v1.455c0 .803.65 1.455 1.454 1.455h1.455c.803 0 1.455-.652 1.455-1.455v-1.455c0-.804-.652-1.455-1.455-1.455h-1.455Zm-2.909 1.455a2.91 2.91 0 0 1 2.91-2.91h1.454A2.91 2.91 0 0 1 16 11.636v1.455A2.91 2.91 0 0 1 13.09 16h-1.454a2.91 2.91 0 0 1-2.909-2.91v-1.454Z' fill='#333'/></svg>`;
+    this.resetFilters.setOnClick(() => {
+      state.content = { ...initialState };
+    });
+
     this.search = new Search(this.blockFilters.node, state);
     this.sort = new Sort(this.blockFilters.node, state);
     this.filterColorInput = new FilterColor(this.blockFilters.node, state);
@@ -69,6 +73,26 @@ export default class Main extends Control {
         this.wrapper.destroy();
         this.foundСounter.destroy();
         this.renderCards(result);
+
+        const location = window.location.href;
+        if (location.split('&').indexOf('button=line') === -1) {
+          this.wrapper.node.classList.remove('wrapper-line');
+          this.wrapper.node.classList.add('wrapper-coub');
+        } else {
+          this.wrapper.node.classList.remove('wrapper-coub');
+          this.wrapper.node.classList.add('wrapper-line');
+        }
+        this.sortLine.setOnClick(() => {
+          state.content = { ...state.content, button: ['line'] };
+          this.wrapper.node.classList.add('wrapper-line');
+          this.wrapper.node.classList.remove('wrapper-coub');
+        });
+        this.sortCoub.setOnClick(() => {
+          state.content = { ...state.content, button: ['coub'] };
+          this.wrapper.node.classList.remove('wrapper-line');
+          this.wrapper.node.classList.add('wrapper-coub');
+        });
+
         const wrapperLength: string = (this.wrapper.node.childNodes.length - 1).toString();
         this.foundСounter = new Control(this.blockFilters.node, 'div', 'counter', 'Found:');
         this.foundСounter.node.textContent = `Found: ${Number(wrapperLength)}`;
@@ -76,9 +100,6 @@ export default class Main extends Control {
     };
     state.onChange.add(refresh);
     refresh(state.content);
-    this.resetFilters.setOnClick(() => {
-      state.content = { ...initialState };
-    });
   }
 
   private renderCards(item: IPhones[]) {

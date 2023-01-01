@@ -26,7 +26,7 @@ export const initialState: IFilters = {
 //   button: [],
 // };
 interface ExampleObject {
-  [key: string]: string | number | [];
+  [key: string]: string | number;
 }
 const local = window.location.search;
 function updateQueryStringParameter(url: string) {
@@ -38,6 +38,10 @@ function updateQueryStringParameter(url: string) {
     }
     const arrValue = value.join('').split('%2C');
     // console.log(decodeURI(arrValue.search));
+
+    //     const params = new URLSearchParams(location.search);
+    // const data = Object.fromEntries(params.entries());
+
     const x: ExampleObject = key.split(' ').reduce((acc, v) => ({ ...acc, [v]: arrValue }), {});
     return x;
   });
@@ -50,7 +54,7 @@ function updateQueryStringParameter(url: string) {
     obj.search = search;
   }
   if (obj.sort) {
-    const sort = Number(obj.sort);
+    const sort = +obj.sort;
     obj.sort = sort;
   }
   return obj as unknown as IFilters;

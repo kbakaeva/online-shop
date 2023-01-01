@@ -3,7 +3,9 @@ import Control from '../../control/control';
 import Cards from './cards/cards';
 import { IPhones } from '../../interface/phones';
 import './basket.scss';
-type up = (date: number) => void;
+// import { totalSum } from '@/control/totalSum';
+
+// type up = (date: number) => void;
 
 export default class Basket extends Control {
   cards: Cards;
@@ -14,13 +16,14 @@ export default class Basket extends Control {
   text: Control<HTMLElement> | undefined;
   code: Control<HTMLElement>;
   result: Control<HTMLElement>;
-  totalSum: number[];
-  onUpdate!: up;
+  // totalSum: any;
+  // totalSum: number[];
+  // onUpdate!: up;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'basket', 'basket');
     this.discountBlock = new Control(this.node, 'div', 'discount');
-    this.summ = new Control(this.discountBlock.node, 'p', 'discount__title', `Общая сумма: ${0} $`);
+    this.summ = new Control(this.discountBlock.node, 'p', 'discount__title');
     this.inputRow = new Control(this.discountBlock.node, 'div', 'input-row');
     this.text = new Control(this.inputRow.node, 'p', 'discount__title', 'Ваш купон:');
     this.code = new Control(this.inputRow.node, 'input', 'discount__input');
@@ -50,6 +53,7 @@ export default class Basket extends Control {
       (t: number, el: Record<string, number>) => t + el.price,
       0
     );
+
     this.summ.node.textContent = String(sum);
   }
 }

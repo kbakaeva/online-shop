@@ -86,7 +86,7 @@
   box-sizing: border-box;
 
   .search {
-    font-size: $title;
+    font-size: 1.42rem;
     font-family: $fontFamily;
   }
 
@@ -202,4 +202,7 @@
 }
 .card-none {
   display: none;
+}
+.wrapper-line {
+  flex-direction: column;
 }
