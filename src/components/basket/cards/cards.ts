@@ -1,3 +1,4 @@
+import { StateBasket } from '../../../control/stateBasket';
 import Control from '../../../control/control';
 import { IPhones } from '../../../interface/phones';
 import './cards.scss';
@@ -14,8 +15,9 @@ export default class Cards extends Control {
   increment: Control<HTMLElement>;
   decrement: Control<HTMLElement>;
   count: Control<HTMLElement>;
+  basket: StateBasket;
 
-  constructor(parentNode: HTMLElement, item: IPhones) {
+  constructor(parentNode: HTMLElement, item: IPhones, basket: StateBasket) {
     super(parentNode, 'div', 'block-cards');
     this.title = new Control(this.node, 'div', 'card__name', item.name);
     this.img = new Control(this.node, 'img', 'img-card', '', 'src', item.image);
@@ -28,29 +30,26 @@ export default class Cards extends Control {
     this.increment = new Control(this.counterBlock.node, 'p', 'counter__sign', '+');
     this.count = new Control(this.counterBlock.node, 'p', 'counter__number', '1');
     this.decrement = new Control(this.counterBlock.node, 'p', 'counter__sign', '-');
-
-    const totalSum = JSON.parse(window.localStorage.getItem('totalSum')) || [];
-    localStorage.setItem(
-      'totalSum',
-      JSON.stringify([...totalSum, { id: item.id, price: +this.counter.node.textContent * item.price }])
-    );
-
+    this.basket = basket;
     this.increment.setOnClick(() => {
       this.onIncrement(item);
     });
     this.decrement.setOnClick(() => {
-      this.onDecrement();
+      this.onDecrement(item);
     });
   }
-  onIncrement(item: IPhones) {
-    if (+this.counter.node.textContent < +item.amount) {
-      this.counter.node.textContent = (+this.counter.node.textContent + 1).toString();
-    }
-  }
 
-  onDecrement() {
-    if (+this.counter.node.textContent !== 1) {
-      this.counter.node.textContent = (+this.counter.node.textContent - 1).toString();
+  onIncrement = (item: IPhones) => {
+    if (+this.count.node.textContent < +item.amount) {
+      this.count.node.textContent = (+this.count.node.textContent + 1).toString();
+      this.basket.setPrice(item.price);
     }
-  }
+  };
+
+  onDecrement = (item: IPhones) => {
+    if (+this.count.node.textContent !== 1) {
+      this.count.node.textContent = (+this.count.node.textContent - 1).toString();
+      this.basket.setPrice(item.price, false);
+    }
+  };
 }

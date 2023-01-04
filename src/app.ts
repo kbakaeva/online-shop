@@ -20,7 +20,11 @@ export class App {
       this.header.updateBasket(data.length);
     };
     stateBasket.onUpdatePrice = (price: number) => {
+      const path = window.location.hash.slice(1);
       this.header.totalPrices(price);
+      if (path === 'basket') {
+        (this.currentPage as Basket).checkCode(price);
+      }
     };
     this.currentPage = main;
     this.onHacheHandler = () => {
@@ -32,7 +36,7 @@ export class App {
       }
       if (path === 'basket') {
         this.currentPage.destroy();
-        this.currentPage = new Basket(parentNode, stateBasket);
+        this.currentPage = new Basket(parentNode, stateBasket, getTotalPrice);
       }
     };
     window.addEventListener('hashchange', this.onHacheHandler);

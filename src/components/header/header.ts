@@ -38,8 +38,8 @@ export default class Header extends Control {
   }
 
   totalPrices(price: number) {
-    if (this.text) {
-      this.totalSum.node.textContent = `Общая сумма: ${price.toString()}`;
+    if (this.totalSum) {
+      this.totalSum.node.textContent = `Общая сумма: $${price.toString()}`;
     }
   }
 }
