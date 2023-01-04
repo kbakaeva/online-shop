@@ -1,7 +1,8 @@
 import { phonesData } from '../../services/phones';
+import { IPhones } from '../../interface/phones';
+import { StateBasket } from '../../control/stateBasket';
 import Control from '../../control/control';
 import Cards from './cards/cards';
-import { IPhones } from '../../interface/phones';
 import './basket.scss';
 
 export default class Basket extends Control {
@@ -14,8 +15,9 @@ export default class Basket extends Control {
   code: Control<HTMLElement>;
   result: Control<HTMLElement>;
   checkout: Control<HTMLElement>;
+  private basket: StateBasket;
 
-  constructor(parentNode: HTMLElement) {
+  constructor(parentNode: HTMLElement, basket: StateBasket) {
     super(parentNode, 'basket', 'basket');
     this.discountBlock = new Control(this.node, 'div', 'discount');
     this.inputRow = new Control(this.discountBlock.node, 'div', 'input-row');
@@ -24,6 +26,7 @@ export default class Basket extends Control {
     this.result = new Control(this.discountBlock.node, 'p', 'discount__title', `К оплате: ${0} $`);
     this.checkout = new Control(this.discountBlock.node, 'button', 'discount__btn', 'Оформить заказ');
     this.renderCards(phonesData);
+    this.basket = basket;
     // this.updateSum();
   }
 
@@ -38,15 +41,14 @@ export default class Basket extends Control {
         }
       });
     });
+    // updateSum() {
+    //   const totalSum = JSON.parse(window.localStorage.getItem('totalSum'));
+    //   const sum = [...new Map(totalSum.map((item: Record<string, number>) => [item['id'], item])).values()].reduce(
+    //     (t: number, el: Record<string, number>) => t + el.price,
+    //     0
+    //   );
+
+    //   this.summ.node.textContent = String(sum);
+    // }
   }
-
-  // updateSum() {
-  //   const totalSum = JSON.parse(window.localStorage.getItem('totalSum'));
-  //   const sum = [...new Map(totalSum.map((item: Record<string, number>) => [item['id'], item])).values()].reduce(
-  //     (t: number, el: Record<string, number>) => t + el.price,
-  //     0
-  //   );
-
-  //   this.summ.node.textContent = String(sum);
-  // }
 }

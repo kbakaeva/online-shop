@@ -7,4 +7,5 @@ export interface IPhones {
   amount: number;
   image: string;
   button: string;
+  status: boolean;
 }

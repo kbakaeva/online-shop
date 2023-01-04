@@ -1,6 +1,6 @@
 // import { totalSuma } from '../../../control/totalSum';
-import Control from '../../../control/control';
 import { IPhones } from '../../../interface/phones';
+import Control from '../../../control/control';
 import './counter.scss';
 
 export class Counter extends Control {

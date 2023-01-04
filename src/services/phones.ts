@@ -32,6 +32,7 @@ export const phonesData: IPhones[] = [
     amount: 5,
     image: PhoneIMG1,
     button: 'Купить',
+    status: false,
   },
   {
     id: 2,
@@ -42,6 +43,7 @@ export const phonesData: IPhones[] = [
     amount: 2,
     image: PhoneIMG2,
     button: 'Купить',
+    status: false,
   },
   {
     id: 3,
@@ -52,6 +54,7 @@ export const phonesData: IPhones[] = [
     amount: 2,
     image: PhoneIMG3,
     button: 'Купить',
+    status: false,
   },
   {
     id: 4,
@@ -62,6 +65,7 @@ export const phonesData: IPhones[] = [
     amount: 8,
     image: PhoneIMG4,
     button: 'Купить',
+    status: false,
   },
   {
     id: 5,
@@ -72,6 +76,7 @@ export const phonesData: IPhones[] = [
     amount: 4,
     image: PhoneIMG5,
     button: 'Купить',
+    status: false,
   },
   {
     id: 6,
@@ -82,6 +87,7 @@ export const phonesData: IPhones[] = [
     amount: 14,
     image: PhoneIMG6,
     button: 'Купить',
+    status: false,
   },
   {
     id: 7,
@@ -92,6 +98,7 @@ export const phonesData: IPhones[] = [
     amount: 14,
     image: PhoneIMG7,
     button: 'Купить',
+    status: false,
   },
   {
     id: 8,
@@ -102,6 +109,7 @@ export const phonesData: IPhones[] = [
     amount: 9,
     image: PhoneIMG8,
     button: 'Купить',
+    status: false,
   },
   {
     id: 9,
@@ -112,6 +120,7 @@ export const phonesData: IPhones[] = [
     amount: 14,
     image: PhoneIMG9,
     button: 'Купить',
+    status: false,
   },
   {
     id: 10,
@@ -122,6 +131,7 @@ export const phonesData: IPhones[] = [
     amount: 1,
     image: PhoneIMG10,
     button: 'Купить',
+    status: false,
   },
   {
     id: 11,
@@ -132,6 +142,7 @@ export const phonesData: IPhones[] = [
     amount: 9,
     image: PhoneIMG11,
     button: 'Купить',
+    status: false,
   },
   {
     id: 12,
@@ -142,6 +153,7 @@ export const phonesData: IPhones[] = [
     amount: 3,
     image: PhoneIMG12,
     button: 'Купить',
+    status: false,
   },
   {
     id: 13,
@@ -152,6 +164,7 @@ export const phonesData: IPhones[] = [
     amount: 7,
     image: PhoneIMG13,
     button: 'Купить',
+    status: false,
   },
   {
     id: 14,
@@ -162,6 +175,7 @@ export const phonesData: IPhones[] = [
     amount: 5,
     image: PhoneIMG14,
     button: 'Купить',
+    status: false,
   },
   {
     id: 15,
@@ -172,6 +186,7 @@ export const phonesData: IPhones[] = [
     amount: 5,
     image: PhoneIMG15,
     button: 'Купить',
+    status: false,
   },
   {
     id: 16,
@@ -182,6 +197,7 @@ export const phonesData: IPhones[] = [
     amount: 11,
     image: PhoneIMG16,
     button: 'Купить',
+    status: false,
   },
   {
     id: 17,
@@ -192,6 +208,7 @@ export const phonesData: IPhones[] = [
     amount: 3,
     image: PhoneIMG17,
     button: 'Купить',
+    status: false,
   },
   {
     id: 18,
@@ -202,6 +219,7 @@ export const phonesData: IPhones[] = [
     amount: 9,
     image: PhoneIMG18,
     button: 'Купить',
+    status: false,
   },
   {
     id: 19,
@@ -212,6 +230,7 @@ export const phonesData: IPhones[] = [
     amount: 19,
     image: PhoneIMG19,
     button: 'Купить',
+    status: false,
   },
   {
     id: 20,
@@ -222,6 +241,7 @@ export const phonesData: IPhones[] = [
     amount: 13,
     image: PhoneIMG20,
     button: 'Купить',
+    status: false,
   },
   {
     id: 21,
@@ -232,6 +252,7 @@ export const phonesData: IPhones[] = [
     amount: 18,
     image: PhoneIMG21,
     button: 'Купить',
+    status: false,
   },
   {
     id: 22,
@@ -242,5 +263,6 @@ export const phonesData: IPhones[] = [
     amount: 8,
     image: PhoneIMG22,
     button: 'Купить',
+    status: false,
   },
 ];
