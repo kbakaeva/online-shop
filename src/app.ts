@@ -15,7 +15,7 @@ export class App {
     const getLocalStorage = JSON.parse(localStorage.getItem('basket')) ?? [];
     const stateBasket = new StateBasket(getLocalStorage);
 
-    this.header = new Header(parentNode, getLocalStorage?.length);
+    this.header = new Header(parentNode, getLocalStorage?.length, stateBasket.data);
     const main = new Main(parentNode, state, stateBasket);
     this.header.updateBasket(stateBasket.data.length);
     stateBasket.onUpdate = (data: number[]) => {

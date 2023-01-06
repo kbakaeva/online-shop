@@ -6,7 +6,7 @@
   color: $grey;
   border-radius: $borderRadius;
   padding: 5px;
-  height: 360px;
+  height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -30,4 +30,46 @@
   padding: 5px 10px;
   color: $white;
   border-radius: $borderRadius;
+}
+
+.counter-block {
+  display: flex;
+  flex-direction: column;
+  height: 45px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.counter {
+  display: flex;
+  padding: 5px 0px;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color: $black;
+  font-weight: $bold;
+  align-items: center;
+
+  &__sign {
+    display: flex;
+    flex-direction: row;
+    background-color: $black;
+    color: $white;
+    padding: 5px 20px;
+    border-radius: $borderRadius;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__sign:hover {
+    cursor: pointer;
+    background-color: $green;
+  }
+
+  &__number {
+    padding: 5px 20px;
+  }
+
+  &__total {
+    font-weight: $bold;
+  }
 }
