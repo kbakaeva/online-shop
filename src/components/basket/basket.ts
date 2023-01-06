@@ -3,6 +3,7 @@ import Control from '../../control/control';
 import Cards from './cards/cards';
 import { IPhones } from '../../interface/phones';
 import './basket.scss';
+import Popup from './popup';
 // import { totalSum } from '@/control/totalSum';
 
 // type up = (date: number) => void;
@@ -16,12 +17,16 @@ export default class Basket extends Control {
   text: Control<HTMLElement> | undefined;
   code: Control<HTMLElement>;
   result: Control<HTMLElement>;
+  asd: Control<HTMLElement>;
+  button: Control<HTMLElement>;
+  modal: Control<HTMLElement>;
+  popup: Popup;
   // totalSum: any;
   // totalSum: number[];
   // onUpdate!: up;
 
   constructor(parentNode: HTMLElement) {
-    super(parentNode, 'basket', 'basket');
+    super(parentNode, 'div', 'basket');
     this.discountBlock = new Control(this.node, 'div', 'discount');
     this.summ = new Control(this.discountBlock.node, 'p', 'discount__title');
     this.inputRow = new Control(this.discountBlock.node, 'div', 'input-row');
@@ -30,6 +35,13 @@ export default class Basket extends Control {
     this.result = new Control(this.discountBlock.node, 'p', 'discount__title', `К оплате: ${0} $`);
     this.renderCards(phonesData);
     this.updateSum();
+    console.log(this.wrapper.node);
+
+    this.button = new Control(this.discountBlock.node, 'button', 'button-popup', 'Оформить заказ');
+    this.button.setOnClick(() => {
+      document.body.classList.add('no-scroll');
+      this.popup = new Popup(this.node, this.wrapper.node);
+    });
   }
 
   renderCards(item: IPhones[]) {
@@ -55,5 +67,8 @@ export default class Basket extends Control {
     );
 
     this.summ.node.textContent = String(sum);
+  }
+  destroyBasket() {
+    this.destroy();
   }
 }
