@@ -12,7 +12,6 @@
     "start": "webpack serve",
     "lint": "eslint --ext .js,.ts . --fix",
     "deploy": "npm run build && npx gh-pages -d dist"
-
   },
   "repository": {
     "type": "git",
@@ -49,8 +48,9 @@
   },
   "dependencies": {
     "eslint-plugin-prettier": "^4.2.1",
+    "imask": "6.4.3",
     "module-alias": "^2.2.2",
-    "nouislider": "^15.6.1"
+    "nouislider": "15.6.1"
   },
   "keywords": []
 }
