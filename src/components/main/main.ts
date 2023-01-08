@@ -13,6 +13,7 @@ import RangeSliderPrice from './filters/slider.Price';
 import './main.scss';
 import { initialState } from '../../index';
 import { StateBasket } from '@/control/stateBasket';
+import { CardInfo } from './cardInfo/cardInfo';
 
 export default class Main extends Control {
   private title: Control<HTMLElement>;
@@ -36,7 +37,7 @@ export default class Main extends Control {
 
   constructor(parentNode: HTMLElement, state: State, model: StateBasket) {
     super(parentNode, 'main', 'main');
-    this.renderCards(phonesData);
+    this.renderCards(phonesData, state);
     this.blockFilters = new Control(this.node, 'div', 'block-filters');
     const blockFilters = this.blockFilters.node;
     this.renderFilters(blockFilters, state);
@@ -53,7 +54,7 @@ export default class Main extends Control {
       if (this.wrapper) {
         this.wrapper.destroy();
         this.foundСounter.destroy();
-        this.renderCards(result);
+        this.renderCards(result, state);
 
         const location = window.location.href;
         if (location.split('&').indexOf('button=line') === -1) {
@@ -108,14 +109,26 @@ export default class Main extends Control {
     this.sliderPrice = new RangeSliderPrice(blockFilters, state);
     this.foundСounter = new Control(blockFilters, 'div', 'counter', 'Found:');
   }
-  private renderCards(item: IPhones[]) {
+  private renderCards(item: IPhones[], state: State) {
     this.wrapper = new Control(this.node, 'div', 'wrapper');
     this.found = new Control(this.wrapper.node, 'p', 'not-found', 'no found');
     const wrapper = this.wrapper.node;
     item.forEach((item) => {
-      this.cards = new Cards(wrapper, item, () => {
-        this.model.setData(item.id);
-      });
+      this.cards = new Cards(
+        wrapper,
+        item,
+        () => {
+          this.model.setData(item.id);
+        },
+        () => {
+          state.content = { ...initialState, brand: [item.name, `id${item.id.toString()}`] };
+          this.blockFilters.destroy();
+          this.wrapper.destroy();
+          this.wrapper = new Control(this.node, 'div', 'wrapper-info');
+          const wrapper = this.wrapper.node;
+          new CardInfo(wrapper, item);
+        }
+      );
       this.found.node.style.display = 'none';
     });
     if (wrapper.childNodes.length === 0) {

@@ -63,6 +63,7 @@ export default class Popup extends Control {
       if (document.querySelector('.valid') === null) {
         document.body.classList.remove('no-scroll');
         parentDestroy.remove();
+        this.destroy();
         new Control(parentNode, 'div', 'submit', 'Заказ оформлен вас перенаправит на главную страницу через 3 секунды');
         localStorage.clear();
         setTimeout(() => {
@@ -88,7 +89,6 @@ export default class Popup extends Control {
       const re = /[a-zA-Zа-яА-Я]{3,}(\s[a-zA-Zа-яА-Я]{3,})+/;
       const value = this.name.node.value;
       const valid = re.test(value);
-
       if (valid) {
         this.name.node.classList.remove('valid');
       } else {

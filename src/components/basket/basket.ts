@@ -36,11 +36,11 @@ export default class Basket extends Control {
     this.checkout = new Control(this.discountBlock.node, 'button', 'discount__btn', 'Оформить заказ');
     this.renderCards(phonesData);
     // this.updateSum();
-    this.updateSum();
+    // this.updateSum();
     console.log(this.wrapper.node);
 
-    this.button = new Control(this.discountBlock.node, 'button', 'button-popup', 'Оформить заказ');
-    this.button.setOnClick(() => {
+    // this.button = new Control(this.discountBlock.node, 'button', 'button-popup', 'Оформить заказ');
+    this.checkout.setOnClick(() => {
       document.body.classList.add('no-scroll');
       this.popup = new Popup(this.node, this.wrapper.node);
     });
@@ -68,8 +68,8 @@ export default class Basket extends Control {
 
   //   this.summ.node.textContent = String(sum);
   // }
-    this.summ.node.textContent = String(sum);
-  }
+  //   this.summ.node.textContent = String(sum);
+  // }
   destroyBasket() {
     this.destroy();
   }
