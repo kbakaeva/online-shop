@@ -1,7 +1,8 @@
 import { phonesData } from '../../services/phones';
+import { IPhones } from '../../interface/phones';
+import { StateBasket } from '../../control/stateBasket';
 import Control from '../../control/control';
 import Cards from './cards/cards';
-import { IPhones } from '../../interface/phones';
 import './basket.scss';
 import Popup from './popup';
 // import { totalSum } from '@/control/totalSum';
@@ -15,34 +16,27 @@ export default class Basket extends Control {
   summ: Control<HTMLElement>;
   inputRow: Control<HTMLElement>;
   text: Control<HTMLElement> | undefined;
-  code: Control<HTMLElement>;
+  code: Control<HTMLInputElement>;
   result: Control<HTMLElement>;
   checkout: Control<HTMLElement>;
-  asd: Control<HTMLElement>;
-  button: Control<HTMLElement>;
-  modal: Control<HTMLElement>;
-  popup: Popup;
-  // totalSum: any;
-  // totalSum: number[];
-  // onUpdate!: up;
-
-  constructor(parentNode: HTMLElement) {
-    super(parentNode, 'div', 'basket');
+  check: Control<HTMLElement>;
+  codeWord: string;
+  basket: StateBasket;
+  constructor(parentNode: HTMLElement, basket: StateBasket, totalPrice: number) {
+    super(parentNode, 'basket', 'basket');
+    this.codeWord = 'RSSCode';
+    this.basket = basket;
     this.discountBlock = new Control(this.node, 'div', 'discount');
     this.inputRow = new Control(this.discountBlock.node, 'div', 'input-row');
     this.text = new Control(this.inputRow.node, 'p', 'discount__title', 'Ваш купон:');
     this.code = new Control(this.inputRow.node, 'input', 'discount__input');
-    this.result = new Control(this.discountBlock.node, 'p', 'discount__title', `К оплате: ${0} $`);
+    this.result = new Control(this.discountBlock.node, 'p', 'discount__title', `К оплате: $${totalPrice}$`);
+    this.check = new Control(this.discountBlock.node, 'button', 'discount__check', 'Проверить купон');
     this.checkout = new Control(this.discountBlock.node, 'button', 'discount__btn', 'Оформить заказ');
     this.renderCards(phonesData);
-    // this.updateSum();
-    // this.updateSum();
-    console.log(this.wrapper.node);
-
-    // this.button = new Control(this.discountBlock.node, 'button', 'button-popup', 'Оформить заказ');
-    this.checkout.setOnClick(() => {
-      document.body.classList.add('no-scroll');
-      this.popup = new Popup(this.node, this.wrapper.node);
+    this.totalPrices();
+    this.check.setOnClick(() => {
+      this.checkCode(totalPrice);
     });
   }
 
@@ -53,24 +47,25 @@ export default class Basket extends Control {
     itemId.map((el: number) => {
       item.forEach((item) => {
         if (el === item.id) {
-          this.cards = new Cards(wrapper, item);
+          this.cards = new Cards(wrapper, item, this.basket);
         }
       });
     });
   }
 
-  // updateSum() {
-  //   const totalSum = JSON.parse(window.localStorage.getItem('totalSum'));
-  //   const sum = [...new Map(totalSum.map((item: Record<string, number>) => [item['id'], item])).values()].reduce(
-  //     (t: number, el: Record<string, number>) => t + el.price,
-  //     0
-  //   );
+  totalPrices() {
+    const total = localStorage.getItem('price');
+    if (this.result) {
+      this.result.node.textContent = `К оплате: $${total}`;
+    }
+  }
 
-  //   this.summ.node.textContent = String(sum);
-  // }
-  //   this.summ.node.textContent = String(sum);
-  // }
-  destroyBasket() {
-    this.destroy();
+  checkCode(totalPrice: number) {
+    const total = localStorage.getItem('price');
+    if (this.code.node.value === this.codeWord) {
+      this.result.node.textContent = `К оплате: $${totalPrice - totalPrice * 0.1}`;
+    } else {
+      this.result.node.textContent = `К оплате: $${total}`;
+    }
   }
 }

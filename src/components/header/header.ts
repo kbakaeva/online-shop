@@ -1,9 +1,5 @@
 import Control from '../../control/control';
 import './header.scss';
-// import basket from '../assets/shopping.png';
-// import { baket } from './baket.svg';
-import { IPhones } from '../../interface/phones';
-import { phonesData } from '../../services/phones';
 
 export default class Header extends Control {
   image: Control<HTMLImageElement>;
@@ -13,7 +9,7 @@ export default class Header extends Control {
   textShop: Control<HTMLElement>;
   totalSum: Control<HTMLElement>;
 
-  constructor(parentNode: HTMLElement, localstor: number, sum: number[]) {
+  constructor(parentNode: HTMLElement, localstor: number, totalPrice: number) {
     super(parentNode, 'header', 'header');
     this.textShop = new Control(this.node, 'h1', 'header__online-shop', 'Online-shop');
     this.totalSum = new Control(this.node, 'p', 'header__total-sum', `Общая сумма: ${0}`);
@@ -32,14 +28,7 @@ export default class Header extends Control {
       window.location.hash = 'basket';
     });
     this.updateBasket(localstor);
-    // const total = 0;
-    console.log('sum', sum);
-    // this.text.node.textContent = localstor.toString();
-    // this.clearHash.setOnClick(() => {
-    //   onClearLocalStore();
-    // });
-
-    this.totalPrices(phonesData, sum);
+    this.totalPrices(totalPrice);
   }
 
   updateBasket(local: number) {
@@ -48,19 +37,9 @@ export default class Header extends Control {
     }
   }
 
-  totalPrices(item: IPhones[], sum: number[]) {
-    // const id = JSON.parse(window.localStorage.getItem('basket'));
-    sum?.map((el: number) => {
-      item.forEach((item) => {
-        if (el === item.id) {
-          // item.price.reduce((acc, curr) => (acc = +acc + urr));
-        }
-      });
-    });
+  totalPrices(price: number) {
+    if (this.totalSum) {
+      this.totalSum.node.textContent = `Общая сумма: $${price.toString()}`;
+    }
   }
-  // updateBasket(state: number) {
-  //   if (this.text) {
-  //     this.text.node.textContent = state.toString();
-  //   }
-  // }
 }
