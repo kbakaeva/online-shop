@@ -4,6 +4,7 @@ import IMask, { MaskedRange } from 'imask';
 import masterCard from '../../assets/png/master.png';
 import unionPay from '../../assets/png/union.png';
 import visa from '../../assets/png/visa.png';
+import { StateBasket } from '@/control/stateBasket';
 
 export default class Popup extends Control {
   name: Control<HTMLInputElement>;
@@ -23,7 +24,7 @@ export default class Popup extends Control {
   mailLabel: Control<HTMLLabelElement>;
   pay: Control<HTMLImageElement>;
   textInValid: Control<HTMLElement>;
-  constructor(parentNode: HTMLElement, parentDestroy: HTMLElement) {
+  constructor(parentNode: HTMLElement, parentDestroy: HTMLElement, stateBasket: StateBasket) {
     super(parentNode, 'div', 'modal');
     this.modal = new Control(this.node, 'div', 'modal-overlay');
     this.content = new Control(this.modal.node, 'form', 'modal-content ');
@@ -66,6 +67,7 @@ export default class Popup extends Control {
         this.destroy();
         new Control(parentNode, 'div', 'submit', 'Заказ оформлен вас перенаправит на главную страницу через 3 секунды');
         localStorage.clear();
+        stateBasket.removeDate();
         setTimeout(() => {
           window.location.hash = '';
           window.location.hash = 'main';
