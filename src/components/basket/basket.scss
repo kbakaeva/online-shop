@@ -3,6 +3,8 @@
 .basket {
   display: flex;
   justify-content: center;
+  min-height: 100%;
+  flex: 1 0 auto;
 }
 
 .wrapper {
@@ -162,9 +164,7 @@
     border-radius: $borderRadius;
     color: $white;
   }
-
 }
-
 
 .pagination-page {
   display: flex;
@@ -182,5 +182,4 @@
     color: $white;
     margin: 0px 5px;
   }
-
 }

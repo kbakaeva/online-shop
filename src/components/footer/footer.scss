@@ -3,7 +3,7 @@
 .footer {
   background-color: $black;
   color: #fff;
-  order: 10;
+  flex: 0 0 auto;
   &__wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

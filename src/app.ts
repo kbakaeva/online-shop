@@ -5,7 +5,6 @@ import Header from './components/header/header';
 import Control from './control/control';
 import Basket from './components/basket/basket';
 
-import { StateBasket } from './control/stateBasket';
 import { NotFound } from './components/page404/pageNotFound';
 import { Footer } from './components/footer/footer';
 
@@ -38,15 +37,20 @@ export class App {
       if (path === 'main') {
         this.currentPage.destroy();
         this.currentPage = new Main(parentNode, state, stateBasket);
+        this.footer.destroy();
+        this.footer = new Footer(parentNode);
       }
       if (path === 'basket') {
         this.currentPage.destroy();
         this.currentPage = new Basket(parentNode, stateBasket, getTotalPrice);
+        this.footer.destroy();
+        this.footer = new Footer(parentNode);
       }
       if (path !== 'main' && path !== 'basket') {
-        console.log('asdas');
         this.currentPage.destroy();
         this.currentPage = new NotFound(parentNode);
+        this.footer.destroy();
+        this.footer = new Footer(parentNode);
       }
     };
     window.addEventListener('hashchange', this.onHacheHandler);

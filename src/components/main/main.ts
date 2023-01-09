@@ -119,7 +119,7 @@ export default class Main extends Control {
         item,
         () => {
           this.model.setData(item.id);
-          this.model.setPrice(item.price, item.status);
+          this.model.setPrice(item.price, (item.status = true));
         },
         () => {
           state.content = { ...initialState, brand: [item.name, `id${item.id.toString()}`] };
@@ -127,7 +127,10 @@ export default class Main extends Control {
           this.wrapper.destroy();
           this.wrapper = new Control(this.node, 'div', 'wrapper-info');
           const wrapper = this.wrapper.node;
-          new CardInfo(wrapper, item, () => this.model.setData(item.id));
+          new CardInfo(wrapper, item, () => {
+            this.model.setData(item.id);
+            this.model.setPrice(item.price, (item.status = true));
+          });
         }
       );
       this.found.node.style.display = 'none';
