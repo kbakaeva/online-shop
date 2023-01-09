@@ -40,10 +40,9 @@ export default class Main extends Control {
     super(parentNode, 'main', 'main');
     this.renderCards(phonesData, state);
     this.blockFilters = new Control(this.node, 'div', 'block-filters');
-    this.renderFilters(this.blockFilters.node, state);
-
+    const blockFilters = this.blockFilters.node;
+    this.renderFilters(blockFilters, state);
     this.model = model;
-
     const refresh = (el: IFilters) => {
       let result = this.sortPhones([...phonesData], el.sort);
       result = this.filterColor(result, el.color);

@@ -15,6 +15,7 @@ export default class Basket extends Control {
   text: Control<HTMLElement> | undefined;
   code: Control<HTMLInputElement>;
   result: Control<HTMLElement>;
+  oldPrice: Control<HTMLElement>;
   checkout: Control<HTMLElement>;
   check: Control<HTMLElement>;
   codeWord: string;
@@ -33,8 +34,9 @@ export default class Basket extends Control {
     this.basket = basket;
     this.discountBlock = new Control(this.node, 'div', 'discount');
     this.inputRow = new Control(this.discountBlock.node, 'div', 'input-row');
-    this.text = new Control(this.inputRow.node, 'p', 'discount__title', 'Ваш купон:');
+    this.text = new Control(this.inputRow.node, 'p', 'discount__title', 'Ваш купон на 10%:');
     this.code = new Control(this.inputRow.node, 'input', 'discount__input');
+    this.oldPrice = new Control(this.discountBlock.node, 'p', 'discount__old-price');
     this.result = new Control(this.discountBlock.node, 'p', 'discount__title', `К оплате: $${total}$`);
     this.check = new Control(this.discountBlock.node, 'button', 'discount__check', 'Проверить купон - RSSCode');
     this.checkout = new Control(this.discountBlock.node, 'button', 'discount__btn', 'Оформить заказ');
@@ -99,6 +101,7 @@ export default class Basket extends Control {
   checkCode = () => {
     const totalLocal = localStorage.getItem('price');
     if (this.code.node.value === this.codeWord) {
+      this.oldPrice.node.textContent = `Ваша старая цена: $${totalLocal}`;
       this.result.node.textContent = `К оплате: $${+totalLocal - +totalLocal * 0.1} `;
     } else {
       this.result.node.textContent = `К оплате: $${totalLocal} `;
