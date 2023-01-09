@@ -13,8 +13,6 @@ import Control from '../../control/control';
 import RangeSliderAmount from './filters/sliderAmount';
 import RangeSliderPrice from './filters/slider.Price';
 import './main.scss';
-import { initialState } from '../../index';
-import { StateBasket } from '@/control/stateBasket';
 import { CardInfo } from './cardInfo/cardInfo';
 
 export default class Main extends Control {
