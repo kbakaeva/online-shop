@@ -22,7 +22,7 @@ export class State {
         this.params.delete(key);
       }
     }
-    const newRelativePathQuery = window.location.pathname + '?' + this.params.toString();
+    const newRelativePathQuery = window.location.pathname + '?' + this.params.toString() + window.location.hash;
     history.pushState(null, '', newRelativePathQuery);
   }
   setInit(value: IFilters) {

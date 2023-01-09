@@ -16,6 +16,8 @@
 .main {
   display: flex;
   justify-content: center;
+  min-height: 100%;
+  flex: 1 0 auto;
 }
 
 .block-filters {
@@ -206,16 +208,48 @@
 .wrapper-line {
   flex-direction: column;
 }
+
+.res-copy {
+  display: flex;
+  justify-content: space-around;
+}
+.line-coub {
+  display: flex;
+  gap: 10px;
+}
+
 .description {
   display: flex;
   flex-direction: column;
   &-img {
-    width: 120px;
+    cursor: pointer;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px;
     &-main {
       width: 300px;
     }
   }
   &-crumbs {
     display: flex;
+    color: $grey;
+    font-size: 1.6rem;
+    margin: 15px 0;
+    &-store {
+      cursor: pointer;
+    }
+  }
+  &-card {
+    color: $grey;
+    font-size: 1.5rem;
+    max-width: 700px;
+  }
+  &-button-add {
+    background-color: rgb(11, 24, 185);
+    color: #fff;
+    font-size: 1.6rem;
+    max-width: 150px;
+    margin: 5px 0;
   }
 }

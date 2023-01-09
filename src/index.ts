@@ -16,6 +16,7 @@ export const initialState: IFilters = {
   amount: ['1', '19'],
   button: [],
 };
+
 interface ExampleObject {
   [key: string]: string | number;
 }
@@ -28,6 +29,7 @@ function updateQueryStringParameter(url: string) {
       return;
     }
     const arrValue = value.join('').split('%2C');
+
     const x: ExampleObject = key.split(' ').reduce((acc, v) => ({ ...acc, [v]: arrValue }), {});
     return x;
   });
