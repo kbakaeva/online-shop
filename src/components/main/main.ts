@@ -2,17 +2,17 @@ import { State } from '../../control/filterState';
 import { IFilters } from '../../interface/filter';
 import { IPhones } from '../../interface/phones';
 import { phonesData } from '../../services/phones';
-import Control from '../../control/control';
-import Cards from './cards/cards';
+import { StateBasket } from '../../control/stateBasket';
+import { initialState } from '../../index';
 import { Sort } from './filters/sort';
 import { FilterColor } from './filters/color';
 import { Search } from './filters/search';
 import { BrandFilter } from './filters/brand';
+import Cards from './cards/cards';
+import Control from '../../control/control';
 import RangeSliderAmount from './filters/sliderAmount';
 import RangeSliderPrice from './filters/slider.Price';
 import './main.scss';
-import { initialState } from '../../index';
-import { StateBasket } from '@/control/stateBasket';
 import { CardInfo } from './cardInfo/cardInfo';
 
 export default class Main extends Control {
@@ -117,7 +117,10 @@ export default class Main extends Control {
       this.cards = new Cards(
         wrapper,
         item,
-        () => this.model.setData(item.id),
+        () => {
+          this.model.setData(item.id);
+          this.model.setPrice(item.price, item.status);
+        },
         () => {
           state.content = { ...initialState, brand: [item.name, `id${item.id.toString()}`] };
           this.blockFilters.destroy();

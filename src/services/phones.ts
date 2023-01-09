@@ -55,6 +55,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG1,
     image2: PhoneIMG23,
     button: 'Купить',
+    status: false,
     description:
       'iPhone 14 Pro Max. Introducing Dynamic Island. Vital new safety features designed to save lives. A 48MP camera for up to 4x the resolution. 4 colors.',
   },
@@ -68,6 +69,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG2,
     image2: PhoneIMG24,
     button: 'Купить',
+    status: false,
     description: 'The iPhone 14 Pro comes with a 6.1-inch ProMotion OLED display with 1-120Hz adaptive refresh rates',
   },
   {
@@ -80,6 +82,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG3,
     image2: PhoneIMG25,
     button: 'Купить',
+    status: false,
     description:
       'The iPhone 11 succeeded the iPhone XR, and it features a 6.1-inch LCD display that Apple calls a "Liquid Retina HD Display."',
   },
@@ -93,6 +96,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG4,
     image2: PhoneIMG26,
     button: 'Купить',
+    status: false,
     description:
       'The iPhone 14 display has rounded corners that follow a beautiful curved design, and these corners are within a standard rectangle.',
   },
@@ -106,6 +110,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG5,
     image2: PhoneIMG27,
     button: 'Купить',
+    status: false,
     description:
       'All of the iPhone 13 models feature the same OLED Super Retina XDR display, which is flexible and extends right into the chassis of each device.',
   },
@@ -119,6 +124,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG6,
     image2: PhoneIMG8,
     button: 'Купить',
+    status: false,
     description:
       'Samsung Galaxy S21 5G ; Display, Type ; Size, 6.2 inches, 94.1 cm2 (~87.2% screen-to-body ratio) ; Resolution, 1080 x 2400 pixels, 20:9 ratio (~421 ppi density).',
   },
@@ -132,6 +138,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG7,
     image2: PhoneIMG28,
     button: 'Купить',
+    status: false,
     description:
       'Samsung Galaxy Z Flip3 5G Android smartphone. Announced Aug 2021. Features 6.7″ display, Snapdragon 888 5G chipset, 3300 mAh battery.',
   },
@@ -145,6 +152,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG29,
     image2: PhoneIMG30,
     button: 'Купить',
+    status: false,
     description:
       'Samsung Galaxy S21 Plus 5G is officially announced on January 14, 2021. The dimension of the smartphone is 161.5 x 75.6 x 7.8 mm and it weighs 200 grams.',
   },
@@ -158,6 +166,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG9,
     image2: PhoneIMG31,
     button: 'Купить',
+    status: false,
     description: `Description. The Samsung Galaxy S22 Ultra is the headliner of the S22 series. It's the first S series phone to include Samsung's S Pen.`,
   },
   {
@@ -170,6 +179,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG10,
     image2: PhoneIMG32,
     button: 'Купить',
+    status: false,
     description:
       'Description. The Huawei Mate 50 Pro comes with 6.74-inch OLED display with 120Hz refresh rate and Qualcomm Snapdragon 8+ Gen 1 processor.',
   },
@@ -183,6 +193,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG11,
     image2: PhoneIMG33,
     button: 'Купить',
+    status: false,
     description:
       'Huawei nova Y61 ; Size, 6.52 inches, 102.6 cm2 (~82.4% screen-to-body ratio) ; Resolution, 720 x 1600 pixels, 20:9 ratio (~269 ppi density).',
   },
@@ -196,6 +207,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG12,
     image2: PhoneIMG34,
     button: 'Купить',
+    status: false,
     description:
       'HUAWEI nova 10 SE Specification · Dimensions. Height. 162.39 mm · Display. Screen Size. 6.67 inches · Processor. Qualcomm Snapdragon™ 680.',
   },
@@ -209,6 +221,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG13,
     image2: PhoneIMG35,
     button: 'Купить',
+    status: false,
     description:
       'HUAWEI P50 Pro Specification · Dimensions. Height. 158.8 mm · Display. Size. 6.6 inches · Processor. Snapdragon 888 4G. CPU · Memory. RAM + ROM · Rear Camera. 50 MP.',
   },
@@ -222,6 +235,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG14,
     image2: PhoneIMG36,
     button: 'Купить',
+    status: false,
     description:
       'The OPPO A55 is packed with a triple rear camera system of a massive 50MP f/1.8 with PDAF focus, 2MP f/2.4 macro sensor, 2MP f/2.4 mono, and LED flash.',
   },
@@ -235,6 +249,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG15,
     image2: PhoneIMG37,
     button: 'Купить',
+    status: false,
     description:
       'Oppo A96 Android smartphone. Announced Mar 2022. Features 6.59″ display, Snapdragon 680 4G chipset, 5000 mAh battery.',
   },
@@ -248,6 +263,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG16,
     image2: PhoneIMG38,
     button: 'Купить',
+    status: false,
     description:
       'Oppo Reno7 5G Android smartphone. Announced Feb 2022. Features 6.43″ display, MediaTek MT6877 Dimensity 900 chipset, 4500 mAh battery.',
   },
@@ -261,6 +277,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG17,
     image2: PhoneIMG39,
     button: 'Купить',
+    status: false,
     description:
       'OnePlus 10T 5G is the speed-leading flagship delivering ultimate performance. Driven by the fastest charging in OnePlus history-125Watt.',
   },
@@ -274,6 +291,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG18,
     image2: PhoneIMG40,
     button: 'Купить',
+    status: false,
     description:
       'Operating System: OxygenOS based on Android™ 10. CPU: Qualcomm® Snapdragon™ 765G 5G mobile platform. GPU: Adreno 620. RAM: 8GB/12GB LPDDR4X. Storage: 128GB/256GB UFS2.1.',
   },
@@ -287,6 +305,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG19,
     image2: PhoneIMG41,
     button: 'Купить',
+    status: false,
     description:
       'Xiaomi 11T Android smartphone. Announced Sep 2021. Features 6.67″ display, MediaTek MT6893 Dimensity 1200 chipset, 5000 mAh battery.',
   },
@@ -300,6 +319,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG20,
     image2: PhoneIMG42,
     button: 'Купить',
+    status: false,
     description:
       'Xiaomi 12X ; Resolution, 1080 x 2400 pixels, 20:9 ratio (~419 ppi density) ; Protection, Corning Gorilla Glass Victus ; Platform, OS ; Chipset, Qualcomm SM8250.',
   },
@@ -313,6 +333,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG21,
     image2: PhoneIMG43,
     button: 'Купить',
+    status: false,
     description:
       'Xiaomi 11 Lite 5G NE Android smartphone. Announced Sep 2021. Features 6.55″ display, Snapdragon 778G 5G chipset, 4250 mAh battery.',
   },
@@ -326,6 +347,7 @@ export const phonesData: IPhones[] = [
     image: PhoneIMG22,
     image2: PhoneIMG44,
     button: 'Купить',
+    status: false,
     description:
       'Xiaomi 12 Lite Android smartphone. Announced Jul 2022. Features 6.55″ display, Snapdragon 778G 5G chipset, 4300 mAh battery.',
   },

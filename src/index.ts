@@ -47,6 +47,5 @@ function updateQueryStringParameter(url: string) {
   }
   return obj as unknown as IFilters;
 }
-// state.setInit(updateQueryStringParameter(local));
 state.setInit({ ...initialState, ...updateQueryStringParameter(local) });
 new App(root, state);
