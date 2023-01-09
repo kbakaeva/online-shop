@@ -206,3 +206,16 @@
 .wrapper-line {
   flex-direction: column;
 }
+.description {
+  display: flex;
+  flex-direction: column;
+  &-img {
+    width: 120px;
+    &-main {
+      width: 300px;
+    }
+  }
+  &-crumbs {
+    display: flex;
+  }
+}

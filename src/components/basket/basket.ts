@@ -4,6 +4,10 @@ import { StateBasket } from '../../control/stateBasket';
 import Control from '../../control/control';
 import Cards from './cards/cards';
 import './basket.scss';
+import Popup from './popup';
+// import { totalSum } from '@/control/totalSum';
+
+// type up = (date: number) => void;
 
 export default class Basket extends Control {
   cards: Cards;
@@ -18,7 +22,6 @@ export default class Basket extends Control {
   check: Control<HTMLElement>;
   codeWord: string;
   basket: StateBasket;
-
   constructor(parentNode: HTMLElement, basket: StateBasket, totalPrice: number) {
     super(parentNode, 'basket', 'basket');
     this.codeWord = 'RSSCode';
@@ -59,7 +62,6 @@ export default class Basket extends Control {
 
   checkCode(totalPrice: number) {
     const total = localStorage.getItem('price');
-
     if (this.code.node.value === this.codeWord) {
       this.result.node.textContent = `К оплате: $${totalPrice - totalPrice * 0.1}`;
     } else {

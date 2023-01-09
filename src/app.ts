@@ -19,6 +19,7 @@ export class App {
     stateBasket.onUpdate = (data: number[]) => {
       this.header.updateBasket(data.length);
     };
+
     stateBasket.onUpdatePrice = (price: number) => {
       const path = window.location.hash.slice(1);
       this.header.totalPrices(price);

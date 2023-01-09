@@ -6,4 +6,5 @@ export interface IFilters {
   price: (number | string)[];
   amount: (number | string)[];
   button: string[];
+  brand?: string[];
 }

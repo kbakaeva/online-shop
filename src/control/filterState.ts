@@ -18,6 +18,8 @@ export class State {
     for (const [key, val] of Object.entries(value)) {
       if (val) {
         this.params.set(key, val);
+      } else {
+        this.params.delete(key);
       }
     }
     const newRelativePathQuery = window.location.pathname + '?' + this.params.toString();

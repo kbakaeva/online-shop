@@ -13,9 +13,6 @@
     "sourceMap": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@control/*": ["src/control/*"],
-      "@interface/*": ["src/interface/*"],
-      "@filters/*": ["src/components/main/filters/*"],
     }
   },
   "files": ["src/index.ts", "module.d.ts"],
