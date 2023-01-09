@@ -18,6 +18,13 @@ export default class Basket extends Control {
   check: Control<HTMLElement>;
   codeWord: string;
   basket: StateBasket;
+  pagination: Control<HTMLSelectElement>;
+  optionsTwo: Control<HTMLOptionElement>;
+  optionsFour: Control<HTMLOptionElement>;
+  optionsAll: Control<HTMLOptionElement>;
+  page: Control<HTMLElement>;
+  pageTitle: Control<HTMLElement>;
+
   constructor(parentNode: HTMLElement, basket: StateBasket, total: number) {
     super(parentNode, 'basket', 'basket');
     this.codeWord = 'RSSCode';
@@ -27,27 +34,53 @@ export default class Basket extends Control {
     this.text = new Control(this.inputRow.node, 'p', 'discount__title', 'Ваш купон:');
     this.code = new Control(this.inputRow.node, 'input', 'discount__input');
     this.result = new Control(this.discountBlock.node, 'p', 'discount__title', `К оплате: $${total}$`);
-    this.check = new Control(this.discountBlock.node, 'button', 'discount__check', 'Проверить купон');
+    this.check = new Control(this.discountBlock.node, 'button', 'discount__check', 'Проверить купон - RSSCode');
     this.checkout = new Control(this.discountBlock.node, 'button', 'discount__btn', 'Оформить заказ');
-    this.renderCards(phonesData);
-    this.totalPrices();
+    this.pagination = new Control(this.discountBlock.node, 'div', 'pagination', 'Пагинация:');
+    this.optionsTwo = new Control(this.pagination.node, 'button', 'pagination__title', '2');
+    this.optionsFour = new Control(this.pagination.node, 'button', 'pagination__title', '4');
+    this.optionsAll = new Control(this.pagination.node, 'button', 'pagination__title', 'Все');
+    const length = JSON.parse(window.localStorage.getItem('basket')).length;
+    this.renderCards(phonesData, length);
+    this.optionsFour.setOnClick(() => {
+      this.page.destroy();
+      this.renderCards(phonesData, 4);
+    });
+    this.optionsTwo.setOnClick(() => {
+      this.page.destroy();
+      this.renderCards(phonesData, 2);
+    });
 
+    this.optionsAll.setOnClick(() => {
+      this.page.destroy();
+      this.renderCards(phonesData, length);
+    });
+    this.totalPrices();
     this.check.setOnClick(() => {
       this.checkCode();
     });
   }
 
-  renderCards(item: IPhones[]) {
+  renderCards(item: IPhones[], length: number) {
     const itemId = JSON.parse(window.localStorage.getItem('basket'));
     this.wrapper = new Control(this.node, 'div', 'wrapper');
     const wrapper = this.wrapper.node;
-    itemId.map((el: number) => {
-      item.forEach((item) => {
-        if (el === item.id) {
-          this.cards = new Cards(wrapper, item, this.basket);
-        }
-      });
-    });
+    {
+      itemId.map(
+        (el: number, ind: number) =>
+          ind < length &&
+          item.forEach((item) => {
+            if (el === item.id) {
+              this.cards = new Cards(wrapper, item, this.basket);
+            }
+          })
+      );
+    }
+    const count = Math.ceil(itemId.length / length);
+    this.page = new Control(this.discountBlock.node, 'div', 'pagination-page', 'Страницы:');
+    for (let i = 1; i <= count; i++) {
+      this.pageTitle = new Control(this.page.node, 'button', 'pagination-page__title', `${i}`);
+    }
   }
 
   totalPrices() {
