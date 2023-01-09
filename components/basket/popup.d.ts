@@ -1,0 +1,30 @@
+import Control from '../../control/control';
+import './basket.scss';
+import { StateBasket } from '@/control/stateBasket';
+export default class Popup extends Control {
+    name: Control<HTMLInputElement>;
+    phone: Control<HTMLInputElement>;
+    adress: Control<HTMLInputElement>;
+    mail: Control<HTMLInputElement>;
+    card: Control<HTMLElement>;
+    cardNum: Control<HTMLInputElement>;
+    cardDate: Control<HTMLInputElement>;
+    cardCvv: Control<HTMLInputElement>;
+    nameLabel: Control<HTMLLabelElement>;
+    modal: Control<HTMLElement>;
+    content: Control<HTMLFormElement>;
+    button: Control<HTMLButtonElement>;
+    phoneLabel: Control<HTMLLabelElement>;
+    adressLabel: Control<HTMLLabelElement>;
+    mailLabel: Control<HTMLLabelElement>;
+    pay: Control<HTMLImageElement>;
+    textInValid: Control<HTMLElement>;
+    constructor(parentNode: HTMLElement, parentDestroy: HTMLElement, stateBasket: StateBasket);
+    inputName(): void;
+    inputPhone(): void;
+    inputAddress(): void;
+    inputMail(): void;
+    inputCard(): void;
+    inputCvv(): void;
+    inputDate(): void;
+}

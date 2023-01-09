@@ -1,0 +1,32 @@
+import { IPhones } from '../../interface/phones';
+import { StateBasket } from '../../control/stateBasket';
+import Control from '../../control/control';
+import Cards from './cards/cards';
+import Popup from './popup';
+import './basket.scss';
+export default class Basket extends Control {
+    cards: Cards;
+    wrapper: Control<HTMLElement>;
+    discountBlock: Control<HTMLElement>;
+    summ: Control<HTMLElement>;
+    inputRow: Control<HTMLElement>;
+    text: Control<HTMLElement> | undefined;
+    code: Control<HTMLInputElement>;
+    result: Control<HTMLElement>;
+    checkout: Control<HTMLElement>;
+    check: Control<HTMLElement>;
+    codeWord: string;
+    basket: StateBasket;
+    pagination: Control<HTMLSelectElement>;
+    optionsTwo: Control<HTMLOptionElement>;
+    optionsFour: Control<HTMLOptionElement>;
+    optionsAll: Control<HTMLOptionElement>;
+    page: Control<HTMLElement>;
+    pageTitle: Control<HTMLElement>;
+    popup: Popup;
+    constructor(parentNode: HTMLElement, basket: StateBasket, total: number);
+    renderCards(item: IPhones[], length: number): void;
+    totalPrices(): void;
+    checkCode: () => void;
+    destroyBasket(): void;
+}

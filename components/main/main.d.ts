@@ -1,0 +1,34 @@
+import { State } from '../../control/filterState';
+import { StateBasket } from '../../control/stateBasket';
+import Control from '../../control/control';
+import './main.scss';
+export default class Main extends Control {
+    private title;
+    private cards;
+    private wrapper;
+    private sort;
+    private filterColorInput;
+    private blockSorts;
+    private search;
+    private found;
+    private filter;
+    private sliderAmount;
+    private sliderPrice;
+    private foundСounter;
+    private blockFilters;
+    private model;
+    private resetFilters;
+    private copyFilters;
+    private sortLine;
+    private sortCoub;
+    dataCount: number;
+    constructor(parentNode: HTMLElement, state: State, model: StateBasket);
+    private renderFilters;
+    private renderCards;
+    private sortPhones;
+    private filterColor;
+    private searchPhones;
+    private filterPhones;
+    private sliderPhonesAmount;
+    private sliderPhonesPrice;
+}
