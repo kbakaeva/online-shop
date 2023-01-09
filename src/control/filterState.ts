@@ -1,16 +1,6 @@
 import Signal from './signal';
 import { IFilters } from '../interface/filter';
 
-// export const filterState: IFilters = {
-//   sort: 0,
-//   search: '',
-//   manufacturer: [],
-//   color: [],
-//   price: ['150', '1300'],
-//   amount: ['1', '14'],
-//   button: [],
-// };
-
 export class State {
   private _filters: IFilters;
   params: URLSearchParams;
@@ -32,7 +22,7 @@ export class State {
         this.params.delete(key);
       }
     }
-    const newRelativePathQuery = window.location.pathname + '?' + this.params.toString();
+    const newRelativePathQuery = window.location.pathname + '?' + this.params.toString() + window.location.hash;
     history.pushState(null, '', newRelativePathQuery);
   }
   setInit(value: IFilters) {
