@@ -30,7 +30,6 @@ export class App {
     this.currentPage = main;
     this.onHacheHandler = () => {
       const path = window.location.hash.slice(1);
-      this.currentPage.destroy();
       if (path === 'main') {
         this.currentPage.destroy();
         this.currentPage = new Main(parentNode, state, stateBasket);

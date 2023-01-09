@@ -3,6 +3,7 @@ import { IPhones } from '../../interface/phones';
 import { StateBasket } from '../../control/stateBasket';
 import Control from '../../control/control';
 import Cards from './cards/cards';
+import Popup from './popup';
 import './basket.scss';
 
 export default class Basket extends Control {
@@ -24,6 +25,7 @@ export default class Basket extends Control {
   optionsAll: Control<HTMLOptionElement>;
   page: Control<HTMLElement>;
   pageTitle: Control<HTMLElement>;
+  popup: Popup;
 
   constructor(parentNode: HTMLElement, basket: StateBasket, total: number) {
     super(parentNode, 'basket', 'basket');
@@ -58,6 +60,10 @@ export default class Basket extends Control {
     this.totalPrices();
     this.check.setOnClick(() => {
       this.checkCode();
+    });
+    this.checkout.setOnClick(() => {
+      document.body.classList.add('no-scroll');
+      this.popup = new Popup(this.node, this.wrapper.node, basket);
     });
   }
 
@@ -98,4 +104,7 @@ export default class Basket extends Control {
       this.result.node.textContent = `К оплате: $${totalLocal} `;
     }
   };
+  destroyBasket() {
+    this.destroy();
+  }
 }
