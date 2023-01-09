@@ -1,0 +1,36 @@
+@import '../../global.scss';
+
+.footer {
+  background-color: $black;
+  color: #fff;
+  flex: 0 0 auto;
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    text-align: center;
+    user-select: none;
+  }
+  &__link {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+}
+.footer__logo {
+  display: block;
+  margin-left: auto;
+  width: 100px;
+  height: 50px;
+  background-image: url('https://rs.school/images/rs_school_js.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.container {
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 100%;
+  max-width: 1520px;
+}

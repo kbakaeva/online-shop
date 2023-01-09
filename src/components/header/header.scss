@@ -1,0 +1,48 @@
+@import '../../global.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background: $black;
+  color: $white;
+  height: 70px;
+  align-items: center;
+  padding: 1rem;
+
+  &__online-shop {
+    font-family: $fontFamily;
+    font-size: 2rem;
+  }
+
+  &__total-sum {
+    font-family: $fontFamily;
+    font-size: 2rem;
+  }
+
+  &__block-basket {
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-evenly;
+  }
+
+  &__text {
+    font-family: $fontFamily;
+    font-size: $subTitle;
+  }
+
+  &__clear-hash {
+    border-radius: $borderRadius;
+    padding: 5px 10px;
+    font-family: $fontFamily;
+    font-size: $subTitle;
+  }
+
+  &__clear-hash:hover {
+    cursor: pointer;
+    background-color: $green;
+    color: $white;
+
+  }
+}
