@@ -4,10 +4,6 @@ import { StateBasket } from '../../control/stateBasket';
 import Control from '../../control/control';
 import Cards from './cards/cards';
 import './basket.scss';
-import Popup from './popup';
-// import { totalSum } from '@/control/totalSum';
-
-// type up = (date: number) => void;
 
 export default class Basket extends Control {
   cards: Cards;
@@ -22,7 +18,7 @@ export default class Basket extends Control {
   check: Control<HTMLElement>;
   codeWord: string;
   basket: StateBasket;
-  constructor(parentNode: HTMLElement, basket: StateBasket, totalPrice: number) {
+  constructor(parentNode: HTMLElement, basket: StateBasket, total: number) {
     super(parentNode, 'basket', 'basket');
     this.codeWord = 'RSSCode';
     this.basket = basket;
@@ -30,13 +26,14 @@ export default class Basket extends Control {
     this.inputRow = new Control(this.discountBlock.node, 'div', 'input-row');
     this.text = new Control(this.inputRow.node, 'p', 'discount__title', 'Ваш купон:');
     this.code = new Control(this.inputRow.node, 'input', 'discount__input');
-    this.result = new Control(this.discountBlock.node, 'p', 'discount__title', `К оплате: $${totalPrice}$`);
+    this.result = new Control(this.discountBlock.node, 'p', 'discount__title', `К оплате: $${total}$`);
     this.check = new Control(this.discountBlock.node, 'button', 'discount__check', 'Проверить купон');
     this.checkout = new Control(this.discountBlock.node, 'button', 'discount__btn', 'Оформить заказ');
     this.renderCards(phonesData);
     this.totalPrices();
+
     this.check.setOnClick(() => {
-      this.checkCode(totalPrice);
+      this.checkCode();
     });
   }
 
@@ -54,18 +51,18 @@ export default class Basket extends Control {
   }
 
   totalPrices() {
-    const total = localStorage.getItem('price');
+    const totalLocal = localStorage.getItem('price');
     if (this.result) {
-      this.result.node.textContent = `К оплате: $${total}`;
+      this.result.node.textContent = `К оплате: $${totalLocal}`;
     }
   }
 
-  checkCode(totalPrice: number) {
-    const total = localStorage.getItem('price');
+  checkCode = () => {
+    const totalLocal = localStorage.getItem('price');
     if (this.code.node.value === this.codeWord) {
-      this.result.node.textContent = `К оплате: $${totalPrice - totalPrice * 0.1}`;
+      this.result.node.textContent = `К оплате: $${+totalLocal - +totalLocal * 0.1} `;
     } else {
-      this.result.node.textContent = `К оплате: $${total}`;
+      this.result.node.textContent = `К оплате: $${totalLocal} `;
     }
-  }
+  };
 }

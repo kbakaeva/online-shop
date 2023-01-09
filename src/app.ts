@@ -24,7 +24,7 @@ export class App {
       const path = window.location.hash.slice(1);
       this.header.totalPrices(price);
       if (path === 'basket') {
-        (this.currentPage as Basket).checkCode(price);
+        (this.currentPage as Basket).checkCode();
       }
     };
     this.currentPage = main;
