@@ -20,14 +20,13 @@ export class Counter extends Control {
       this.node,
       'p',
       'counter__total',
-      `Итого сумма: ${+this.counter.node.textContent * item.price}`
+      `Итого сумма: ${+(this.counter.node.textContent || 0) * item.price}`
     );
-    // const totSum = new totalSuma(0);
 
-    const totalSum = JSON.parse(window.localStorage.getItem('totalSum')) || [];
+    const totalSum = JSON.parse(window.localStorage.getItem('totalSum') || '') || [];
     localStorage.setItem(
       'totalSum',
-      JSON.stringify([...totalSum, { id: item.id, price: +this.counter.node.textContent * item.price }])
+      JSON.stringify([...totalSum, { id: item.id, price: +(this.counter.node.textContent || 0) * item.price }])
     );
 
     this.increment.setOnClick(() => {
@@ -39,8 +38,8 @@ export class Counter extends Control {
   }
 
   onIncrement(item: IPhones) {
-    if (+this.counter.node.textContent < +item.amount) {
-      this.counter.node.textContent = (+this.counter.node.textContent + 1).toString();
+    if (+(this.counter.node.textContent || 0) < +item.amount) {
+      this.counter.node.textContent = (+(this.counter.node.textContent || 0) + 1).toString();
       if (this.total) {
         this.total.destroy();
       }
@@ -50,7 +49,7 @@ export class Counter extends Control {
         'counter__total',
         `Итого сумма: ${+this.counter.node.textContent * item.price} `
       );
-      const totalSum = JSON.parse(window.localStorage.getItem('totalSum')) || [];
+      const totalSum = JSON.parse(window.localStorage.getItem('totalSum') || '') || [];
 
       localStorage.setItem(
         'totalSum',
@@ -60,8 +59,8 @@ export class Counter extends Control {
   }
 
   onDecrement(item: IPhones) {
-    if (+this.counter.node.textContent !== 1) {
-      this.counter.node.textContent = (+this.counter.node.textContent - 1).toString();
+    if (+(this.counter.node.textContent || 0) !== 1) {
+      this.counter.node.textContent = (+(this.counter.node.textContent || 0) - 1).toString();
       if (this.total) {
         this.total.destroy();
       }
@@ -70,9 +69,9 @@ export class Counter extends Control {
         this.node,
         'p',
         'counter__total',
-        `Итого сумма: ${+this.counter.node.textContent * item.price} `
+        `Итого сумма: ${+(this.counter.node.textContent || 0) * item.price} `
       );
-      const totalSum = JSON.parse(window.localStorage.getItem('totalSum')) || [];
+      const totalSum = JSON.parse(window.localStorage.getItem('totalSum') || '') || [];
       localStorage.setItem(
         'totalSum',
         JSON.stringify([...totalSum, { id: item.id, price: +this.counter.node.textContent * item.price }])

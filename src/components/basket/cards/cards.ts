@@ -40,15 +40,15 @@ export default class Cards extends Control {
   }
 
   onIncrement = (item: IPhones) => {
-    if (+this.count.node.textContent < +item.amount) {
-      this.count.node.textContent = (+this.count.node.textContent + 1).toString();
+    if (+(this.count.node.textContent || 0) < +item.amount) {
+      this.count.node.textContent = (+(this.count.node.textContent || 0) + 1).toString();
       this.basket.setPrice(item.price);
     }
   };
 
   onDecrement = (item: IPhones) => {
-    if (+this.count.node.textContent !== 1) {
-      this.count.node.textContent = (+this.count.node.textContent - 1).toString();
+    if (+(this.count.node.textContent || 0) !== 1) {
+      this.count.node.textContent = (+(this.count.node.textContent || 0) - 1).toString();
       this.basket.setPrice(item.price, false);
     }
   };

@@ -1,13 +1,17 @@
 import Signal from './signal';
 import { IFilters } from '../interface/filter';
-
+import { initialState } from '../index';
 export class State {
-  private _filters: IFilters;
-  params: URLSearchParams;
-  url: Location;
+  private _filters: IFilters | undefined;
+  params: URLSearchParams | undefined;
+  url: Location | undefined;
 
   get content() {
-    return this._filters;
+    if (this._filters) {
+      return this._filters;
+    } else {
+      return initialState;
+    }
   }
 
   set content(value: IFilters) {

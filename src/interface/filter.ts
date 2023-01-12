@@ -1,4 +1,5 @@
 export interface IFilters {
+  equals?(initialState: IFilters): IFilters;
   sort: number;
   search: string;
   manufacturer: string[];

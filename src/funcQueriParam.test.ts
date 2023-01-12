@@ -1,26 +1,9 @@
-import { State } from './control/filterState';
-import { App } from './app';
 import { IFilters } from './interface/filter';
-
-const root = document.createElement('div');
-root.classList.add('root');
-root.setAttribute('id', 'root');
-document.body.append(root);
-const state = new State();
-export const initialState: IFilters = {
-  sort: 0,
-  search: '',
-  manufacturer: [],
-  color: [],
-  price: ['150', '1300'],
-  amount: ['1', '19'],
-  button: [],
-};
 
 interface ExampleObject {
   [key: string]: string | number;
 }
-const local = window.location.search;
+const local = `https://kbakaeva.github.io/online-shop/?manufacturer=&color=&price=150%2C1300&amount=1%2C19&button=&=&sort=1&search=a`;
 function updateQueryStringParameter(url: string) {
   const queriSplit = url.slice(1).split('&').slice(0);
   const queri = queriSplit.map((item) => {
@@ -47,5 +30,15 @@ function updateQueryStringParameter(url: string) {
   }
   return obj as unknown as IFilters;
 }
-state.setInit({ ...initialState, ...updateQueryStringParameter(local) });
-new App(root, state);
+const toExpect = updateQueryStringParameter(local);
+
+it('toBe updateQueryStringParameter', () => {
+  expect(toExpect).toStrictEqual({ amount: ['1', '19'], price: ['150', '1300'], search: 'a', sort: 1 });
+});
+
+it('Not toBe updateQueryStringParameter', () => {
+  expect(toExpect).not.toBe({ amount: ['2', '29'], price: ['1500', '13000'], search: 'a12', sort: 2 });
+});
+it('toBeDefined updateQueryStringParameter', () => {
+  expect(toExpect).toBeDefined();
+});

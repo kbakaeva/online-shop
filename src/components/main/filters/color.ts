@@ -4,7 +4,7 @@ import { State } from '../../../control/filterState';
 export class FilterColor extends Control {
   color: Control<HTMLElement>;
   blockColor: Control<HTMLElement>;
-  colorItem: Control<HTMLInputElement>;
+  colorItem: Control<HTMLInputElement> | undefined;
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'div', 'color');
     const color = ['purple', 'black', 'red', 'white', 'orange', 'blue', 'silver', 'green'];
