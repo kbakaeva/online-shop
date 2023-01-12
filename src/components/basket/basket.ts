@@ -7,10 +7,10 @@ import Popup from './popup';
 import './basket.scss';
 
 export default class Basket extends Control {
-  cards: Cards;
-  wrapper: Control<HTMLElement>;
+  cards: Cards | undefined;
+  wrapper: Control<HTMLElement> | undefined;
   discountBlock: Control<HTMLElement>;
-  summ: Control<HTMLElement>;
+  summ: Control<HTMLElement> | undefined;
   inputRow: Control<HTMLElement>;
   text: Control<HTMLElement> | undefined;
   code: Control<HTMLInputElement>;
@@ -24,9 +24,9 @@ export default class Basket extends Control {
   optionsTwo: Control<HTMLOptionElement>;
   optionsFour: Control<HTMLOptionElement>;
   optionsAll: Control<HTMLOptionElement>;
-  page: Control<HTMLElement>;
-  pageTitle: Control<HTMLElement>;
-  popup: Popup;
+  page: Control<HTMLElement> | undefined;
+  pageTitle: Control<HTMLElement> | undefined;
+  popup: Popup | undefined;
 
   constructor(parentNode: HTMLElement, basket: StateBasket, total: number) {
     super(parentNode, 'basket', 'basket');
@@ -44,19 +44,19 @@ export default class Basket extends Control {
     this.optionsTwo = new Control(this.pagination.node, 'button', 'pagination__title', '2');
     this.optionsFour = new Control(this.pagination.node, 'button', 'pagination__title', '4');
     this.optionsAll = new Control(this.pagination.node, 'button', 'pagination__title', 'Все');
-    const length = JSON.parse(window.localStorage.getItem('basket')).length;
+    const length = JSON.parse(window.localStorage.getItem('basket') || '').length;
     this.renderCards(phonesData, length);
     this.optionsFour.setOnClick(() => {
-      this.page.destroy();
+      this.page?.destroy();
       this.renderCards(phonesData, 4);
     });
     this.optionsTwo.setOnClick(() => {
-      this.page.destroy();
+      this.page?.destroy();
       this.renderCards(phonesData, 2);
     });
 
     this.optionsAll.setOnClick(() => {
-      this.page.destroy();
+      this.page?.destroy();
       this.renderCards(phonesData, length);
     });
     this.totalPrices();
@@ -65,12 +65,14 @@ export default class Basket extends Control {
     });
     this.checkout.setOnClick(() => {
       document.body.classList.add('no-scroll');
-      this.popup = new Popup(this.node, this.wrapper.node, basket);
+      if (this.wrapper) {
+        this.popup = new Popup(this.node, this.wrapper.node, basket);
+      }
     });
   }
 
   renderCards(item: IPhones[], length: number) {
-    const itemId = JSON.parse(window.localStorage.getItem('basket'));
+    const itemId = JSON.parse(window.localStorage.getItem('basket') || '');
     this.wrapper = new Control(this.node, 'div', 'wrapper');
     const wrapper = this.wrapper.node;
     {
@@ -99,7 +101,7 @@ export default class Basket extends Control {
   }
 
   checkCode = () => {
-    const totalLocal = localStorage.getItem('price');
+    const totalLocal = localStorage.getItem('price') || 0;
     if (this.code.node.value === this.codeWord) {
       this.oldPrice.node.textContent = `Ваша старая цена: $${totalLocal}`;
       this.result.node.textContent = `К оплате: $${+totalLocal - +totalLocal * 0.1} `;

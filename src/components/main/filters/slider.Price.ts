@@ -5,8 +5,8 @@ import * as noUiSlider from 'nouislider';
 
 export default class RangeSliderPrice extends Control {
   sliderNode: Control<HTMLElement>;
-  sliderElem: Control<HTMLElement>;
-  slider: noUiSlider.target;
+  sliderElem: Control<HTMLElement> | undefined;
+  slider: noUiSlider.target | undefined;
   startNum: Control<HTMLElement>;
   endNum: Control<HTMLElement>;
   number: Control<HTMLElement>;
@@ -30,7 +30,7 @@ export default class RangeSliderPrice extends Control {
       },
       step: 10,
     });
-    slider.noUiSlider.on('update', (values: string[], handle: number) => {
+    slider.noUiSlider?.on('update', (values: (string | number)[], handle: number) => {
       state.content = { ...state.content, price: values };
       if (handle) {
         this.endNum.node.textContent = Math.ceil(Number(values[handle])).toString();

@@ -3,9 +3,9 @@ import { State } from '../../../control/filterState';
 
 export class Search extends Control {
   input: Control<HTMLInputElement>;
-  cross: Control<HTMLInputElement>;
-  lineCrossOne: Control<HTMLElement>;
-  lineCrossTwo: Control<HTMLElement>;
+  cross: Control<HTMLInputElement> | undefined;
+  lineCrossOne: Control<HTMLElement> | undefined;
+  lineCrossTwo: Control<HTMLElement> | undefined;
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'div', 'search-container');
     this.input = new Control(this.node, 'input', 'search');

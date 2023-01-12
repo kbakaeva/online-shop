@@ -16,24 +16,24 @@ import './main.scss';
 import { CardInfo } from './cardInfo/cardInfo';
 
 export default class Main extends Control {
-  private title: Control<HTMLElement>;
-  private cards: Cards;
-  private wrapper: Control<HTMLElement>;
-  private sort: Sort;
-  private filterColorInput: FilterColor;
-  private blockSorts: Control<HTMLElement>;
-  private search: Search;
-  private found: Control<HTMLElement>;
-  private filter: BrandFilter;
-  private sliderAmount: RangeSliderAmount;
-  private sliderPrice: RangeSliderPrice;
-  private foundСounter: Control<HTMLElement>;
-  private blockFilters: Control<HTMLElement>;
+  private title: Control<HTMLElement> | undefined;
+  private cards: Cards | undefined;
+  private wrapper: Control<HTMLElement> | undefined;
+  private sort: Sort | undefined;
+  private filterColorInput: FilterColor | undefined;
+  private blockSorts: Control<HTMLElement> | undefined;
+  private search: Search | undefined;
+  private found: Control<HTMLElement> | undefined;
+  private filter: BrandFilter | undefined;
+  private sliderAmount: RangeSliderAmount | undefined;
+  private sliderPrice: RangeSliderPrice | undefined;
+  private foundСounter: Control<HTMLElement> | undefined;
+  private blockFilters: Control<HTMLElement> | undefined;
   private model: StateBasket;
-  private resetFilters: Control<HTMLElement>;
-  private copyFilters: Control<HTMLElement>;
-  private sortLine: Control<HTMLElement>;
-  private sortCoub: Control<HTMLElement>;
+  private resetFilters: Control<HTMLElement> | undefined;
+  private copyFilters: Control<HTMLElement> | undefined;
+  private sortLine: Control<HTMLElement> | undefined;
+  private sortCoub: Control<HTMLElement> | undefined;
   dataCount: number = phonesData.length;
 
   constructor(parentNode: HTMLElement, state: State, model: StateBasket) {
@@ -64,17 +64,19 @@ export default class Main extends Control {
           this.wrapper.node.classList.remove('wrapper-coub');
           this.wrapper.node.classList.add('wrapper-line');
         }
-        this.sortLine.setOnClick(() => {
+        this.sortLine?.setOnClick(() => {
           state.content = { ...state.content, button: ['line'] };
-          this.wrapper.node.classList.add('wrapper-line');
-          this.wrapper.node.classList.remove('wrapper-coub');
+          this.wrapper?.node.classList.add('wrapper-line');
+          this.wrapper?.node.classList.remove('wrapper-coub');
         });
-        this.sortCoub.setOnClick(() => {
+        this.sortCoub?.setOnClick(() => {
           state.content = { ...state.content, button: ['coub'] };
-          this.wrapper.node.classList.remove('wrapper-line');
-          this.wrapper.node.classList.add('wrapper-coub');
+          this.wrapper?.node.classList.remove('wrapper-line');
+          this.wrapper?.node.classList.add('wrapper-coub');
         });
-        this.foundСounter = new Control(this.blockFilters.node, 'div', 'counter', `Found: ${this.dataCount}`);
+        if (this.blockFilters) {
+          this.foundСounter = new Control(this.blockFilters.node, 'div', 'counter', `Found: ${this.dataCount}`);
+        }
       }
     };
     state.onChange.add(refresh);
@@ -86,14 +88,16 @@ export default class Main extends Control {
     this.copyFilters = new Control(resCopy.node, 'button', 'copy-link', 'Copy link');
     this.resetFilters.setOnClick(() => {
       state.content = { ...initialState };
-      this.blockFilters.destroy();
+      this.blockFilters?.destroy();
       this.blockFilters = new Control(this.node, 'div', 'block-filters');
       const blockFilters = this.blockFilters.node;
       this.renderFilters(blockFilters, state);
     });
     this.copyFilters.setOnClick(() => {
       navigator.clipboard.writeText(window.location.href);
-      this.copyFilters.node.textContent = 'Copied';
+      if (this.copyFilters) {
+        this.copyFilters.node.textContent = 'Copied';
+      }
     });
     const lineCoub = new Control(blockFilters, 'div', 'line-coub');
     this.sortLine = new Control(lineCoub.node, 'button', 'line', 'line');
@@ -122,8 +126,8 @@ export default class Main extends Control {
         },
         () => {
           state.content = { ...initialState, brand: [item.name, `id${item.id.toString()}`] };
-          this.blockFilters.destroy();
-          this.wrapper.destroy();
+          this.blockFilters?.destroy();
+          this.wrapper?.destroy();
           this.wrapper = new Control(this.node, 'div', 'wrapper-info');
           const wrapper = this.wrapper.node;
           new CardInfo(wrapper, item, () => {
@@ -132,11 +136,11 @@ export default class Main extends Control {
           });
         }
       );
-      this.found.node.style.display = 'none';
+      if (this.found) this.found.node.style.display = 'none';
     });
     if (wrapper.childNodes.length === 0) {
       this.found.node.style.display = 'block';
-      this.foundСounter.node.textContent = 'Found: 0';
+      if (this.foundСounter) this.foundСounter.node.textContent = 'Found: 0';
     }
   }
 

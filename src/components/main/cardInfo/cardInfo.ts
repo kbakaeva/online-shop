@@ -5,7 +5,7 @@ import { StateBasket } from '../../../control/stateBasket';
 const stateBasketR = new StateBasket([0]);
 export class CardInfo extends Control {
   title: Control<HTMLElement>;
-  img: Control<HTMLImageElement>;
+  img: Control<HTMLImageElement> | undefined;
   color: Control<HTMLElement>;
   subtitle: Control<HTMLElement>;
   amount: Control<HTMLElement>;
@@ -40,10 +40,10 @@ export class CardInfo extends Control {
     this.img2 = new Control(this.imgBlock.node, 'img', 'description-img', '', 'src', item.image2);
     this.imgMain = new Control(this.imgBlock.node, 'img', 'description-img-main', '', 'src', item.image);
     this.img.setOnClick(() => {
-      this.imgMain.node.src = item.image;
+      this.imgMain.node.src = item.image || '';
     });
     this.img2.setOnClick(() => {
-      this.imgMain.node.src = item.image2;
+      this.imgMain.node.src = item.image2 || '';
     });
 
     this.textBlock = new Control(this.node, 'div', 'description-card-block');
@@ -55,7 +55,7 @@ export class CardInfo extends Control {
     this.price = new Control(this.textBlock.node, 'div', 'description-card', `Стоимость: $${item.price}`);
     this.buttonAdd = new Control(this.node, 'button', 'description-button-add', 'Добавить в корзину');
     this.buttonOneClick = new Control(this.node, 'button', 'description-button-add', 'Купить в 1 клик');
-    const localBasket = localStorage.getItem('basket');
+    const localBasket = localStorage.getItem('basket') || '';
     if (localBasket.indexOf(item.id.toString()) !== -1) {
       this.buttonAdd.node.textContent = 'Уже в корзине';
     } else {

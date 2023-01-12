@@ -2,9 +2,9 @@ import Control from '../../../control/control';
 import { State } from '../../../control/filterState';
 
 export class BrandFilter extends Control {
-  manufacturerItem: Control<HTMLInputElement>;
+  manufacturerItem: Control<HTMLInputElement> | undefined;
   manufacturer: Control<HTMLElement>;
-  filterBrandBlock: Control<HTMLElement>;
+  filterBrandBlock: Control<HTMLElement> | undefined;
   blockManufacturer: Control<HTMLElement>;
   constructor(parentNode: HTMLElement, state: State) {
     super(parentNode, 'div', 'brand');

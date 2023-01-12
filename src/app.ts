@@ -7,22 +7,20 @@ import Basket from './components/basket/basket';
 
 import { NotFound } from './components/page404/pageNotFound';
 import { Footer } from './components/footer/footer';
-
 export class App {
   header: Header;
   currentPage: Control<HTMLElement>;
   onHacheHandler: () => void;
   footer: Footer;
   constructor(parentNode: HTMLElement, state: State) {
-    const getLocalStorage = JSON.parse(localStorage.getItem('basket')) ?? [];
-    const getTotalPrice = JSON.parse(localStorage.getItem('price')) ?? 0;
+    const getLocalStorage = JSON.parse(localStorage.getItem('basket') || '') ?? [];
+    const getTotalPrice = JSON.parse(localStorage.getItem('price') || '') ?? 0;
     const stateBasket = new StateBasket(getLocalStorage);
     this.header = new Header(parentNode, getLocalStorage?.length, getTotalPrice);
     this.header.updateBasket(stateBasket.data.length);
     stateBasket.onUpdate = (data: number[]) => {
       this.header.updateBasket(data.length);
     };
-
     stateBasket.onUpdatePrice = (price: number) => {
       const path = window.location.hash.slice(1);
       this.header.totalPrices(price);

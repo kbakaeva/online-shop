@@ -5,8 +5,8 @@ export interface IPhones {
   color: string;
   price: number;
   amount: number;
-  image: string;
-  image2: string;
+  image?: string;
+  image2?: string;
   button: string;
   status: boolean;
   description: string;

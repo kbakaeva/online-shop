@@ -11,12 +11,14 @@
     "outDir": "dist",
     "baseUrl": ".",
     "sourceMap": true,
+    "strict": true,
     "paths": {
       "@/*": ["./src/*"],
     }
   },
+ 
   "files": ["src/index.ts", "module.d.ts"],
-  "include": ["src/**/*", "tests/**/*.ts", ".eslintrc.js"],
+    "include": ["src/**/*", "tests/**/*.ts", ".eslintrc.js",  "./jest-setup.ts"],
   "exclude": ["node_modules"],
   "compileOnSave": false
 }
